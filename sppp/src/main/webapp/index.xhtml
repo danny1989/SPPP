@@ -1,0 +1,241 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:jsf="http://xmlns.jcp.org/jsf"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:pa="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <meta charset="utf-8"/>
+        <title> SPPP</title>
+        <meta name="description" content=""/>
+        <meta name="author" content=""/>
+
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+
+        <!-- #CSS Links -->
+        <!-- Basic Styles -->
+        <link rel="stylesheet" type="text/css" media="screen" href="resources/css/bootstrap.min.css"/>
+        <link rel="stylesheet" type="text/css" media="screen" href="resources/css/font-awesome.min.css"/>
+
+        <!-- SmartAdmin Styles : Please note (smartadmin-production.css) was created using LESS variables -->
+        <link rel="stylesheet" type="text/css" media="screen" href="resources/css/smartadmin-production.min_1.css"/>
+        <!--<link rel="stylesheet" type="text/css" media="screen" href="resources/css/smartadmin-skins.min.css"/>-->
+
+        <!-- SmartAdmin RTL Support is under construction
+                 This RTL CSS will be released in version 1.5
+        <link rel="stylesheet" type="text/css" media="screen" href="css/smartadmin-rtl.min.css"> -->
+
+        <!-- We recommend you use "your_style.css" to override SmartAdmin
+             specific styles this will also ensure you retrain your customization with each SmartAdmin update.
+        <link rel="stylesheet" type="text/css" media="screen" href="css/your_style.css"> -->
+
+        <!-- Demo purpose only: goes with demo.js, you can delete this css when designing your own WebApp -->
+        <!--<link rel="stylesheet" type="text/css" media="screen" href="css/demo.min.css"/>-->
+
+        <!-- #FAVICONS -->
+<!--        <link rel="shortcut icon" href="resources/img/favicon/favicon.png" type="image/x-icon"/>
+        <link rel="icon" href="resources/img/favicon/favicon.png" type="image/x-icon"/>-->
+
+        <!-- #GOOGLE FONT -->
+        <!--<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,300,400,700"/>-->
+
+        <!-- #APP SCREEN / ICONS -->
+        <!-- Specifying a Webpage Icon for Web Clip 
+                 Ref: https://developer.apple.com/library/ios/documentation/AppleApplications/Reference/SafariWebContent/ConfiguringWebApplications/ConfiguringWebApplications.html -->
+<!--        <link rel="apple-touch-icon" href="resources/img/splash/sptouch-icon-iphone.png"/>
+        <link rel="apple-touch-icon" sizes="76x76" href="resources/img/splash/touch-icon-ipad.png"/>
+        <link rel="apple-touch-icon" sizes="120x120" href="resources/img/splash/touch-icon-iphone-retina.png"/>
+        <link rel="apple-touch-icon" sizes="152x152" href="resources/img/splash/touch-icon-ipad-retina.png"/>-->
+
+        <!-- iOS web-app metas : hides Safari UI Components and Changes Status Bar Appearance -->
+        <meta name="apple-mobile-web-app-capable" content="yes"/>
+        <meta name="apple-mobile-web-app-status-bar-style" content="black"/>
+
+        <!-- Startup image for web apps -->
+<!--        <link rel="apple-touch-startup-image" href="resources/img/splash/ipad-landscape.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:landscape)"/>
+        <link rel="apple-touch-startup-image" href="resources/img/splash/ipad-portrait.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:portrait)"/>
+        <link rel="apple-touch-startup-image" href="resources/img/splash/iphone.png" media="screen and (max-device-width: 320px)"/>-->
+
+        <script src="resources/js/fitcoders/util.cjavaperu.js"></script>
+        <style>
+            .smart-form a {
+                margin: 5px;
+                padding: 5px;
+            }
+            .ui-toolbar a {
+                color: white;
+            }
+            .fc-event-time {
+                display: none !important;
+                visibility: hidden;
+            }
+            .ui-state-active {
+                background-color: #3399FF !important;
+            }
+        </style>
+    </h:head>
+    <!--
+    
+            TABLE OF CONTENTS.
+            
+            Use search to find needed section.
+            
+            ===================================================================
+            
+            |  01. #CSS Links                |  all CSS links and file paths  |
+            |  02. #FAVICONS                 |  Favicon links and file paths  |
+            |  03. #GOOGLE FONT              |  Google font link              |
+            |  04. #APP SCREEN / ICONS       |  app icons, screen backdrops   |
+            |  05. #BODY                     |  body tag                      |
+            |  06. #HEADER                   |  header tag                    |
+            |  07. #PROJECTS                 |  project lists                 |
+            |  08. #TOGGLE LAYOUT BUTTONS    |  layout buttons and actions    |
+            |  09. #MOBILE                   |  mobile view dropdown          |
+            |  10. #SEARCH                   |  search field                  |
+            |  11. #NAVIGATION               |  left panel & navigation       |
+            |  12. #MAIN PANEL               |  main panel                    |
+            |  13. #MAIN CONTENT             |  content holder                |
+            |  14. #PAGE FOOTER              |  page footer                   |
+            |  15. #SHORTCUT AREA            |  dropdown shortcuts area       |
+            |  16. #PLUGINS                  |  all scripts and plugins       |
+            
+            ===================================================================
+            
+    -->
+
+    <!-- #BODY -->
+    <!-- Possible Classes
+
+            * 'smart-skin-{SKIN#}'
+            * 'smart-rtl'         - Switch theme mode to RTL (will be avilable from version SmartAdmin 1.5)
+            * 'menu-on-top'       - Switch to top navigation (no DOM change required)
+            * 'hidden-menu'       - Hides the main menu but still accessable by hovering over left edge
+            * 'fixed-header'      - Fixes the header
+            * 'fixed-navigation'  - Fixes the main menu
+            * 'fixed-ribbon'      - Fixes breadcrumb
+            * 'fixed-footer'      - Fixes footer
+            * 'container'         - boxed layout mode (non-responsive: will not work with fixed-navigation & fixed-ribbon)
+    -->
+
+    <h:body class=""> 
+            <!--<p:log />-->
+            <p:growl id="growl" showDetail="true" widgetVar="growl"/>
+            <!-- #HEADER -->
+            <ui:include src="./view/template/header.xhtml" />
+            <!-- END HEADER -->
+
+            <!-- #NAVIGATION -->
+            <ui:include src="./view/template/menu.xhtml" />
+            <!-- END NAVIGATION -->
+
+            <!-- #MAIN PANEL -->
+            <div id="main" role="main">
+
+               
+
+                <!-- #MAIN CONTENT -->
+                <div jsf:id="content">
+                    <ui:include src="#{navigatorController.content}" />
+                </div>
+
+                <!-- END #MAIN CONTENT -->
+
+            </div>
+            <!-- #PAGE FOOTER -->
+            <!--<ui:include src="./view/template/footer.xhtml" />-->
+            <!-- END FOOTER -->
+
+            <ui:insert name="status">
+                <p:ajaxStatus
+                    style="width:64px;height:64px;position:fixed;right:50%;bottom:50%">
+                    <f:facet name="start">
+                        <a class="btn bg-color-red txt-color-white" href="javascript:void(0);">
+                            <i class="fa fa-gear fa-4x fa-spin"></i>
+                        </a>
+                    </f:facet>
+
+                    <f:facet name="complete">
+                        <h:outputText value="" />
+                    </f:facet>
+                </p:ajaxStatus>
+            </ui:insert>
+
+
+            <h:form>
+                <p:idleMonitor timeout="1800000" >
+                    <p:ajax event="idle" oncomplete="window.location = '#{request.contextPath}/login.xhtml';"/>
+                    <!--<p:ajax event="active" listener="#{idleMonitorView.onActive}" update="messages" />-->
+                </p:idleMonitor>
+            </h:form>
+            <!--================================================== -->
+
+            <!-- PACE LOADER - turn this on if you want ajax loading to show (caution: uses lots of memory on iDevices)
+            <script data-pace-options='{ "restartOnRequestAfter": true }' src="js/plugin/pace/pace.min.js"></script>-->
+
+
+            <!-- #PLUGINS -->
+            <!-- Link to Google CDN's jQuery + jQueryUI; fall back to local -->
+            <!--                <script src="resources/js/libs/jquery-2.0.2.min.js"></script>
+            
+                    <script src="resources/js/libs/jquery-ui-1.10.3.min.js"></script>-->
+
+            <!-- IMPORTANT: APP CONFIG -->
+            <script src="resources/js/app.config.js"></script>
+
+            <!-- JS TOUCH : include this plugin for mobile drag / drop touch events-->
+            <script src="resources/js/plugin/jquery-touch/jquery.ui.touch-punch.min.js"></script> 
+
+            <!-- BOOTSTRAP JS -->
+            <script src="resources/js/bootstrap/bootstrap.min.js"></script>
+            <!--<script src="resources/js/bootstrap/bootstrap-timepicker.min.js"></script>-->
+
+            <!-- CUSTOM NOTIFICATION -->
+            <!--<script src="js/notification/SmartNotification.min.js"></script>-->
+
+            <!-- JARVIS WIDGETS -->
+            <script src="resources/js/smartwidgets/jarvis.widget.min.js"></script>
+
+            <!-- EASY PIE CHARTS -->
+            <script src="resources/js/plugin/easy-pie-chart/jquery.easy-pie-chart.min.js"></script>
+
+            <!-- SPARKLINES -->
+            <script src="resources/js/plugin/sparkline/jquery.sparkline.min.js"></script>
+
+            <!-- JQUERY VALIDATE -->
+            <script src="resources/js/plugin/jquery-validate/jquery.validate.min.js"></script>
+
+            <!-- JQUERY MASKED INPUT -->
+            <script src="resources/js/plugin/masked-input/jquery.maskedinput.min.js"></script>
+
+            <!-- JQUERY SELECT2 INPUT -->
+            <script src="resources/js/plugin/select2/select2.min.js"></script>
+
+            <!-- JQUERY UI + Bootstrap Slider -->
+            <!--<script src="resources/js/plugin/bootstrap-slider/bootstrap-slider.min.js"></script>-->
+
+            <!-- browser msie issue fix -->
+            <script src="resources/js/plugin/msie-fix/jquery.mb.browser.min.js"></script>
+
+            <!-- FastClick: For mobile devices: you can disable this in app.js -->
+            <script src="resources/js/plugin/fastclick/fastclick.min.js"></script>
+
+            <!--[if IE 8]>
+                    <h1>Your browser is out of date, please update your browser by going to www.microsoft.com/download</h1>
+            <![endif]-->
+
+            <!-- Demo purpose only -->
+            <!--<script src="js/demo.min.js"></script>-->
+
+            <!-- MAIN APP JS FILE -->
+            <script src="resources/js/app.min.js"></script>
+
+            <!-- ENHANCEMENT PLUGINS : NOT A REQUIREMENT -->
+            <!-- Voice command : plugin -->
+            <script src="resources/js/speech/voicecommand.min.js"></script>
+            <script src="resources/js/validator.min.js"/>
+            <script src="resources/js/locale.min.js"/>
+    </h:body>
+
+</html>

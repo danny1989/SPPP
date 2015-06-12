@@ -1,0 +1,312 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:jsf="http://xmlns.jcp.org/jsf"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui">
+
+    <style>
+        .badge{
+            margin-right: 13px;
+        }
+    </style>
+
+    <!-- #NAVIGATION -->
+    <!-- Left panel : Navigation area -->
+    <!-- Note: This width of the aside area can be adjusted through LESS variables -->
+    <aside id="left-panel">
+
+        <!-- User info -->
+        <div class="login-info">
+            <span> <!-- User image size is adjusted inside CSS, it should stay as is --> 
+
+                <a href="javascript:void(0);" id="show-shortcut" data-action="toggleShortcut">
+                    <img src="resources/foto/#{utilController.persona.urlFoto}" alt="me" class="online" /> 
+                    <span>
+                        #{utilController.persona.nombres}
+                    </span>
+                    <i class="fa fa-angle-down"></i>
+                </a> 
+
+            </span>
+        </div>
+        <!-- end user info -->
+
+        <!-- NAVIGATION : This navigation is also responsive
+
+        To make this navigation dynamic please make sure to link the node
+        (the reference to the nav > ul) after page load. Or the navigation
+        will not initialize.
+        -->
+
+        <nav>
+            <!-- 
+            NOTE: Notice the gaps after each icon usage <i></i>..
+            Please note that these links work a bit different than
+            traditional href="" links. See documentation for details.
+            -->
+
+            <ul >
+                <li class="active">
+                    <a href="javascript:void(0);" onclick="homex();" ><i class="fa fa-lg fa-fw fa-home"></i> <span class="menu-item-parent"> Inicio</span></a>
+                </li>
+                <li>
+                    <a href="#"><i class="fa fa-lg fa-fw fa-mortar-board"></i> <span class="menu-item-parent">Académico </span><span class="badge pull-right inbox-badge bg-color-yellow" >new</span></a>
+                    <ul>
+                        <li>
+                            <a href="javascript:void(0);" onclick="matriculaGestion();"> Matrícula</a>
+                        </li>
+                        <li>
+                            <a href="#"> Cursos </a>
+                            <ul>
+                                <li>
+                                    <a href="javascript:void(0);" onclick="cursoCrudLista();"> Cursos CJava </a>
+                                </li>
+                                <!--                                <li>
+                                                                    <a href="javascript:void(0);"><i class="fa fa-plane"></i> Carrera</a>
+                                                                </li>-->
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#">Alumno</a>
+                            <ul>
+                                <li>
+                                    <a  href="javascript:void(0);" onclick="alumnoCrudLista();" ><i class="fa fa-plane"></i> Alumnos CJava</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#">Docencia </a>
+                            <ul>
+                                <li>
+                                    <a  href="javascript:void(0);" onclick="docenteCrudLista();"><i class="fa fa-plane"></i> Docentes CJava </a>
+                                </li>
+                                <!--                                <li>
+                                                                    <a href="javascript:void(0);"><i class="glyphicon glyphicon-plane"></i> Gestión de Cursos</a>
+                                                                </li>-->
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#"> Reportes </a>
+                            <ul>
+                                <li>
+                                    <a href="javascript:void(0);"><i class="fa fa-plane"></i> Reporte #1 </a>
+                                </li>
+                                <li>
+                                    <a href="javascript:void(0);"><i class="glyphicon glyphicon-plane"></i> Reporte #2</a>
+                                </li>
+                                <li>
+                                    <a href="javascript:void(0);"><i class="glyphicon glyphicon-plane"></i> Reporte #3</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0);"><i class="glyphicon glyphicon-plane"></i> Configuración</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#"><i class="fa fa-lg fa-fw fa-bullhorn"></i> <span class="menu-item-parent"> Marketing</span></a>
+                    <ul>
+                        <li>
+                            <a href="javascript:void(0);"> Eventos</a>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0);"> Socios</a>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0);"> Clientes Potenciales</a>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0);"> Reporte</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#"><i class="fa fa-lg fa-fw fa-truck"></i> <span class="menu-item-parent"> Ventas </span> <span class="badge pull-right inbox-badge bg-color-yellow" >new</span></a>
+                    <ul>
+                        <li>
+                            <a href="javascript:void(0);" onclick="listaGetionCursos();" > Gestión de Cursos </a>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0);" onclick="listaPromociones();"> Promociones </a>
+                        </li>
+                        <li>
+                            <a href="#" > Configuración </a>
+                            <ul>
+                                <li> 
+                                    <a href="javascript:void(0);" onclick="cobroPorPartes();"> Cobro Por Partes </a>
+                                </li>
+                            </ul>
+                        </li>
+
+                    </ul>
+                </li>
+                <li>
+                    <a href="#"><i class="fa fa-lg fa-fw fa-database"></i> <span class="menu-item-parent"> Tesorería </span> <span class="badge pull-right inbox-badge bg-color-yellow" >new</span></a>
+                    <ul>
+                        <li>
+                            <a href="javascript:void(0);" onclick="tesoreriaCuentasPorCobrar();" > Cuentas por cobrar </a>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0);" onclick="tesoreriaEntradas();"> Entradas </a>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0);" onclick="tesoreriaSalidas();"> Salidas </a>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0);" onclick="tesoreriaResumen();"> Resumen </a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#"><i class="fa fa-lg fa-fw fa-group"></i> <span class="menu-item-parent"> R.R. H.H</span></a>
+                    <ul>
+                        <li>
+                            <a href="javascript:void(0);"> Gestión de Personal</a>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0);"> Vacaciones</a>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0);"> Horarios de Trabajo</a>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0);"> Salidas</a>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0);"> Sanciones</a>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0);"> Configuración</a>
+                        </li>
+                    </ul>
+                </li>
+                <!--                <li>
+                                    <a href="#"><i class="fa fa-lg fa-fw fa-desktop"></i> <span class="menu-item-parent"> Alamcén</span></a>
+                                    <ul>
+                                        <li>
+                                            <a href="javascript:void(0);"> Bienes</a>
+                                        </li>
+                                        <li>
+                                            <a href="javascript:void(0);"> Entradas</a>
+                                        </li>
+                                        <li>
+                                            <a href="#"> Salidas</a>
+                                            <ul>
+                                                <li>
+                                                    <a href="javascript:void(0);"><i class="fa fa-plane"></i> Font Awesome</a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </li>-->
+                <!--                <li>
+                                    <a href="javascript:void(0);"><i class="fa fa-lg fa-fw fa-calendar"></i> <span class="menu-item-parent"> Bolsa de Trabajo</span></a>
+                                </li>-->
+
+                <!--                <li class="top-menu-hidden">
+                                    <a href="#"><i class="fa fa-lg fa-fw fa-cube txt-color-blue"></i> <span class="menu-item-parent"> Gestión de Proyectos</span></a>
+                                    <ul>
+                                        <li>
+                                            <a href="javascript:void(0);"><i class="fa fa-stack-overflow"></i> Desarrollo</a>
+                                        </li>
+                                        <li>
+                                            <a href="javascript:void(0);"><i class="fa fa-cube"></i> Investigación</a>
+                                        </li>
+                                    </ul>
+                                </li>-->
+                <li>
+                    <a href="#"><i class="fa fa-lg fa-fw fa-shield"></i> <span class="menu-item-parent"> Seguridad</span></a>
+                    <ul>
+                        <li>
+                            <a href="javascript:void(0);"> Cuentas de Administración</a>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0);"> Roles y Funciones</a>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0);"> Configuración del Sistema</a>
+                        </li>
+                    </ul>
+                </li>
+
+            </ul>
+        </nav>
+        <span class="minifyme" data-action="minifyMenu"> <i class="fa fa-arrow-circle-left hit"></i> </span>
+
+    </aside>
+    <!-- END NAVIGATION -->
+    <h:form id="menuComplete">
+        <p:remoteCommand name="homex" update=":content" >
+            <f:setPropertyActionListener
+                target="#{navigatorController.content}"
+                value="./view/home.xhtml"/>
+        </p:remoteCommand>
+        <p:remoteCommand name="docenteCrudLista" update=":content" >
+            <f:setPropertyActionListener
+                target="#{navigatorController.content}"
+                value="./view/pages/academico/crud/docente/docente-lista.xhtml"/>
+        </p:remoteCommand>
+        <p:remoteCommand name="cursoCrudLista" update=":content" >
+            <f:setPropertyActionListener
+                target="#{navigatorController.content}"
+                value="./view/pages/academico/crud/curso/curso-lista.xhtml"/>
+        </p:remoteCommand>
+        <p:remoteCommand name="matriculaGestion" update=":content" action="#{matriculaController.inicializarListaGestionPromociones()}">
+            <f:setPropertyActionListener
+                target="#{navigatorController.content}"
+                value="./view/pages/academico/matricula/calendario-cursos.xhtml"/>
+        </p:remoteCommand>
+        <p:remoteCommand name="listaPromociones" update=":content"  action="#{promocionController.iniciarListaPromociones()}">
+            <f:setPropertyActionListener 
+                target="#{navigatorController.content}"
+                value="./view/pages/finanzas/promocion/promocion-lista.xhtml" />
+        </p:remoteCommand>
+        <p:remoteCommand name="listaGetionCursos" update=":content"  action="#{gestionCursoController.inicializarListaGestionPromociones()}">
+            <f:setPropertyActionListener 
+                target="#{navigatorController.content}"
+                value="./view/pages/finanzas/apertura-curso/apertura-listar-calendario.xhtml" />
+        </p:remoteCommand>
+        <p:remoteCommand name="alumnoCrudLista" update=":content" >
+            <f:setPropertyActionListener
+                target="#{navigatorController.content}"
+                value="./view/pages/academico/crud/alumno/alumno-lista.xhtml"/>
+        </p:remoteCommand>
+        <p:remoteCommand name="cobroPorPartes" update=":content" action="#{configuracionPagoParcialController.instanciarConfiguracionPagoParcial()}">
+            <f:setPropertyActionListener
+                target="#{navigatorController.content}"
+                value="./view/pages/finanzas/configuracion/pago-matricula-partes.xhtml"/>
+        </p:remoteCommand>
+        <!-- TESORERIA -->
+        <p:remoteCommand name="tesoreriaEntradas" update=":content" action="#{tesoreriaEntradaController.inicializarEntradas()}">
+            <f:setPropertyActionListener
+                target="#{navigatorController.content}"
+                value="./view/pages/tesoreria/entradas/entradas.xhtml"/>
+        </p:remoteCommand>
+        <p:remoteCommand name="tesoreriaCuentasPorCobrar" update=":content" action="#{cuentasPorCobrarController.inicializarListaCuentasPorCobrarMenu()}">
+            <f:setPropertyActionListener
+                target="#{navigatorController.content}"
+                value="./view/pages/tesoreria/cuentasporcobrar/cuentas-lista.xhtml"/>
+        </p:remoteCommand>
+        <p:remoteCommand name="tesoreriaSalidas" update=":content" action="#{tesoreriaSalidaController.inicializarEntradasLazyLoad()}">
+            <f:setPropertyActionListener
+                target="#{navigatorController.content}"
+                value="./view/pages/tesoreria/salidas/salidas-lista.xhtml"/>
+        </p:remoteCommand>
+        <p:remoteCommand name="tesoreriaResumen" update=":content" >
+            <f:setPropertyActionListener
+                target="#{navigatorController.content}"
+                value="./view/pages/tesoreria/resumen/resumen-tabla.xhtml"/>
+        </p:remoteCommand>
+    </h:form>
+
+    <script>
+        $('nav ul *').on('click', 'li', function () {
+            $('nav li.active').removeClass('active');
+            $(this).addClass('active');
+        });
+    </script>
+</ui:composition>

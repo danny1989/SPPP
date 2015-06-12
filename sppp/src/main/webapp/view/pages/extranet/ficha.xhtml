@@ -1,0 +1,288 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:jsf="http://xmlns.jcp.org/jsf"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:pa="http://xmlns.jcp.org/jsf/passthrough"
+                xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+
+
+    <div align="center"><h3><strong>FORMATO F1</strong></h3></div>
+    <div align="center"><h3><strong>INSCRIPCIÓN DE PRACTICAS PRE PROFESIONALES</strong></h3></div>
+    <div align="right">
+        <div class="smart-form" style="width: 20%;">
+            <label class="label">Código del Proyecto: </label>
+            <label class="input">
+                <input type="text" class="input input-xs" disabled="disabled" placeholder="NO EDITABLE"></input>
+            </label>
+        </div>
+    </div>
+    <br/>
+    <div class="">
+        <form jsf:id="newPracId" class="smart-form">
+            <strong>Datos Personales y Académicos</strong><br/>
+            <table class="table table-bordered table-striped table-condensed has-tickbox">
+                <tr style="background: #30E6FD;">
+                    <td width="70%;"><strong>Nombre y Apellidos:</strong></td>
+                    <td width="30%;"><strong>Código de alumno:</strong></td>
+                </tr>
+                <tr>
+                    <td>
+                        #{miPracticaController.practicante.nombreCompleto}
+                    </td>
+                    <td>
+                        #{miPracticaController.practicante.codigoAlumno}
+                    </td>
+                </tr>
+                <tr style="background: #30E6FD;">
+                    <td width="70%;"><strong>Correo electrónico: </strong></td>
+                    <td width="30%;"><strong>Teléfono: </strong></td>
+                </tr>
+                <tr>
+                    <td>
+                        <input style="width: 100%;" maxlength="150" class="input" type="text"
+                               jsf:value="#{miPracticaController.practicante.correoElectronico}" jsf:required="true" jsf:label="Email" />
+                    </td>
+                    <td>
+                        <input style="width: 100%;" maxlength="25" class="input" type="text"
+                               jsf:value="#{miPracticaController.practicante.telefono}" jsf:required="true" jsf:label="Teléfono" />
+                    </td>
+                </tr>
+            </table>
+            <!--            <br/>
+                        <strong>Información General de las PPP: </strong><br/>
+                        <table class="table table-bordered table-striped table-condensed has-tickbox">
+                            <tr >
+                                <td style="background: #30E6FD;" width="30%;"><strong>Asesor:</strong></td>
+                                <td width="70%;">#{miPracticaController.practicante.idAsesor.nombreCompleto}</td>
+                            </tr>
+                            <tr>
+                                <td style="background: #30E6FD;" ><strong>N° de Resolución:</strong></td>
+                                <td></td>
+                            </tr>
+                        </table>-->
+            <br/>
+            <strong>Propuesta de proyecto de Prácticas Pre-Profesionales: </strong><br/>
+            <table class="table table-bordered table-striped table-condensed has-tickbox">
+                <tr >
+                    <td  ><strong>Título: </strong></td>
+                </tr>
+                <tr>
+                    <td>
+                        <input style="width: 100%;" maxlength="400" class="input" type="text"
+                               jsf:value="#{miPracticaController.practicante.tituloProyecto}" jsf:required="true" jsf:label="Título de Proyecto"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td ><strong>Resumen de la propuesta: </strong></td>
+                </tr>
+                <tr>
+                    <td>
+                        <h:inputTextarea class="textarea" pa:maxlength="700" style="width: 100%;height: 80px;" 
+                                         value="#{miPracticaController.practicante.resumenPropuesta}" required="true" label="Resumen" />
+                    </td>
+                </tr>
+                <tr>
+                    <td ><strong>Observaciones: </strong></td>
+                </tr>
+                <tr>
+                    <td>
+                        <div >
+                            <div style="margin-left: 25px;">
+                                <ul>
+                                    <ui:repeat value="#{miPracticaController.practicante.observacionPracticanteList}" var="obs">
+                                        <li>#{obs.descripcion}</li>
+                                    </ui:repeat>
+                                </ul>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+            <br/>
+            <strong>Lugar de ejecución de la PPP: </strong><br/>
+            <table class="table table-bordered table-striped table-condensed has-tickbox">
+                <tr >
+                    <td colspan="2" ><strong>Razón Social: </strong></td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <input type="text" class="input" maxlength="200" style="width: 100%;" jsf:value="#{miPracticaController.practicante.luRazonSocial}" 
+                               jsf:required="true" jsf:label="Nombre Empresa" />
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2" ><strong>Titular: </strong></td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <input class="input" maxlength="200" style="width: 100%;" jsf:value="#{miPracticaController.practicante.luTitular}" 
+                               jsf:required="true" jsf:label="Titular" type="text"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td><strong>Teléfono: </strong></td>
+                    <td><strong>Website: </strong></td>
+                </tr>
+                <tr>
+                    <td width="50%;">
+                        <input type="text" class="input" maxlength="25" style="width: 100%;" jsf:value="#{miPracticaController.practicante.telefono}"
+                               jsf:required="true" jsf:label="Teléfono"/>
+                    </td>
+                    <td width="50%;">
+                        <input type="text" class="input" maxlength="200" style="width: 100%;" jsf:value="#{miPracticaController.practicante.luWebsite}"
+                               jsf:required="true" jsf:label="WebSite"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2"><strong>Área asignada al Practicante: </strong></td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <input class="input" maxlength="100" style="width: 100%;" type="text" jsf:value="#{miPracticaController.practicante.luAreaAsignada}"
+                               jsf:required="true" jsf:label="Área Asignada"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td ><strong>Responsable del Área: </strong></td>
+                    <td ><strong>Cargo: </strong></td>
+                </tr>
+                <tr>
+                    <td rowspan="3">
+                        <h:inputTextarea pa:maxlength="150" class="textarea" style="width: 100%;height: 100%;" value="#{miPracticaController.practicante.luResponsableArea}"
+                                         required="true" label="Responsable"/>
+                    </td>
+                    <td>
+                        <input style="width: 100%;" maxlength="50" class="input" type="text" jsf:value="#{miPracticaController.practicante.luCargo}"
+                               jsf:required="true" jsf:label="Cargo"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td ><strong>E-mail: </strong></td>
+                </tr>
+                <tr>
+                    <td>
+                        <input style="width: 100%;" maxlength="150" class="input" type="text" jsf:value="#{miPracticaController.practicante.luEmail}"
+                               jsf:required="true" jsf:label="Email"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2"><strong>Funciones Propuestas para el Practicante: </strong></td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <div style="margin-left: 25px;" jsf:id="divFunc">
+                            <ul>
+                                <ui:repeat value="#{miPracticaController.practicante.practicanteFuncionList}" var="func" varStatus="status">
+                                    <li>
+                                        <p:commandLink update=":newPracId:divFunc" process="@this"
+                                                       action="#{miPracticaController.eliminarPracticanteFuncion(status.index)}">
+                                            <i class="fa fa-trash-o"></i>
+                                        </p:commandLink>
+                                        #{func.nombre}
+                                    </li>
+                                </ui:repeat>
+                                <li>
+                                    <p:commandLink oncomplete="show('#funcionModal');"  process="@this"
+                                                   action="#{miPracticaController.iniciarInstanciaPracticanteFuncion()}"
+                                                   update=":funcId">
+                                        Añadir una función
+                                    </p:commandLink>
+                                </li>
+                            </ul>
+                        </div>
+                    </td>
+                </tr>
+                <!--                <tr>
+                                    <td ><strong>Fecha Inicio PPP: </strong></td>
+                                    <td ><strong>Fecha Fin PPP: </strong></td>
+                                </tr>-->
+                <!--                <tr>
+                                    <td></td>
+                                    <td></td>
+                                </tr>-->
+            </table>
+            <!--            <div class="">
+                            <strong><u>IMPORTANTE: </u></strong> los datos consignados en el presente formato solo serán válidos y admitidos si la comisión las valida.
+                        </div>
+                        <br/>
+                        <strong><u>Lugar y Fecha: </u></strong>
+                        <br/><br/>
+                        <strong><u>Estado: </u></strong>
+                        <br/>
+                        <section class="smart-form">
+                            <div class="inline-group">
+                                <label class="checkbox">
+                                    <input type="checkbox" name="checkbox-inline"/>
+                                    <i></i>Aprobado
+                                </label>
+                                <label class="checkbox">
+                                    <input type="checkbox" name="checkbox-inline"/>
+                                    <i></i>Observación
+                                </label>
+                                <label class="checkbox">
+                                    <input type="checkbox" name="checkbox-inline"/>
+                                    <i></i>Rechazado
+                                </label>
+                            </div>
+                        </section>-->
+
+            <footer>
+                <p:commandLink class="btn btn-success btn-xs" 
+                               oncomplete="if(args.validationFailed){alert('Faltan llenar Campos');}else {if(confirm('DESPUÉS DE GUARDAR ESTOS DATOS, NO SE PODRÁ EDITAR HASTA QUE LA COMISIÓN DE SUS OBSERVACIONES, DESEA CONTINUAR?')){GuardarPracticas();}}">
+                    - - GUARDAR - -
+                </p:commandLink>
+                <p:remoteCommand name="GuardarPracticas" update=":content" 
+                                 action="#{miPracticaController.guardarActualizarMiPractica()}">
+                    <f:setPropertyActionListener
+                        target="#{navigatorController.content}"
+                        value="./view/pages/extranet/general.xhtml" />
+                </p:remoteCommand>
+            </footer>
+        </form>
+    </div>
+
+
+    <div aria-hidden="true" role="dialog" tabindex="-1" id="funcionModal" class="modal fade">  
+        <div class="modal-dialog">  
+            <div class="modal-content">
+                <div class="modal-header">
+                    Nueva Funcion
+                </div>
+                <div class="modal-body">
+                    <form class="form-horizontal" jsf:id="funcId">
+                        <fieldset>
+                            <div >
+                                <p:messages closable="true" />
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-2 control-label">Nombre Función</label>
+                                <div class="col-md-10">
+                                    <h:inputTextarea class="form-control"  required="true" label="Nombre Función"
+                                                     value="#{miPracticaController.practicanteFuncion.nombre}"/>
+                                </div>
+                            </div>
+                        </fieldset>
+                        <div class="form-actions">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <p:commandLink class="btn btn-success" action="#{miPracticaController.guardarFuncionPracticante()}"
+                                                   update=":newPracId:divFunc" oncomplete="hide('#funcionModal');" >
+                                        GUARDAR
+                                    </p:commandLink>
+                                    <p:commandLink class="btn btn-danger" process="@this" 
+                                                   style="margin-left: 10px;" oncomplete="hide('#funcionModal');">
+                                        SALIR
+                                    </p:commandLink>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>  
+        </div>  
+    </div>
+</ui:composition>

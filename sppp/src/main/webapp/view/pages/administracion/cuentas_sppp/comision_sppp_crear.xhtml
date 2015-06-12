@@ -1,0 +1,214 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:jsf="http://xmlns.jcp.org/jsf"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui">
+
+
+    <section id="widget-grid" class="">
+        <div class="row">
+            <!-- NEW COL START -->
+            <article class="col-sm-12">
+                <div class="jarviswidget jarviswidget-color-blueDark" id="wid-id-0" data-widget-colorbutton="false" data-widget-editbutton="false" data-widget-custombutton="false">
+
+                    <header>
+                        <span class="widget-icon"> <i class="fa fa-edit"></i> </span>
+                        <h2>Crear / Editar comisión...</h2>
+
+                    </header>
+
+                    <div>
+                        <div class="jarviswidget-editbox">
+                        </div>
+
+                        <div class="widget-body">
+                            <div class="widget-body-toolbar">
+
+                                <div class="row">
+
+                                    <div class="col-sm-6">
+                                        <p:commandLink class="btn btn-primary" update="content" action="#{comisionController.inicializarListaComisionPeriodo()}">
+                                            Lista Comisión
+                                            <f:setPropertyActionListener
+                                                target="#{navigatorController.content}"
+                                                value="./view/pages/administracion/cuentas_sppp/comision_sppp_listar.xhtml" />
+                                        </p:commandLink>
+                                        <p:commandLink class="btn btn-success" update="content"
+                                                       action="#{comisionController.inicializarInstanciaComision()}">
+                                            Nueva Comisión
+                                            <f:setPropertyActionListener
+                                                target="#{navigatorController.content}"
+                                                value="./view/pages/administracion/cuentas_sppp/comision_sppp_crear.xhtml" />
+                                        </p:commandLink>
+                                    </div>
+
+                                    <div class="col-sm-6 text-right">
+
+                                    </div>
+
+                                </div>
+                            </div>
+                            <form class="form-horizontal" jsf:id="idConvenio">
+                                <fieldset>
+                                    <legend >
+                                        Nueva Comisión
+                                    </legend>
+                                    <div class="form-group">
+                                        <label class="col-md-2 control-label">Periodo Inicial</label>
+                                        <div class="col-md-7">
+                                            <p:calendar locale="es" navigator="true" value="#{comisionController.comisionSppp.periodoInicial}" pattern="dd, MMMM yyyy"/>
+
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-2 control-label">Periodo Final</label>
+                                        <div class="col-md-7">
+                                            <p:calendar locale="es" navigator="true" value="#{comisionController.comisionSppp.periodoFinal}" pattern="dd, MMMM yyyy"/>
+                                        </div>
+                                    </div>
+
+                                </fieldset>
+                                <div class="table-responsive" jsf:id="tableComiId">
+                                    <table class="table table-bordered table-condensed" >
+                                        <thead>
+                                            <tr>
+                                                <td>#</td>
+                                                <td>NOMBRE COMPLETO</td>
+                                                <td>EMAIL</td>
+                                                <td>TELÉFONO</td>
+                                                <td>CARGO</td>
+                                                <td></td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <ui:repeat value="#{comisionController.comisionSppp.miembroComisionSpppList}" var="miem" varStatus="status">
+                                                <tr>
+                                                    <td>#{status.index + 1}</td>
+                                                    <td>#{miem.idDocente.nombreCompleto}</td>
+                                                    <td>#{miem.idDocente.email}</td>
+                                                    <td>#{miem.idDocente.telefono}</td>
+                                                    <td>#{miem.posicion}</td>
+                                                    <td>
+                                                        <p:commandLink action="#{comisionController.eliminarMiembroComision(status.index)}" update="@form">
+                                                            <i class="fa fa-trash-o"/>
+                                                        </p:commandLink>
+                                                    </td>
+                                                </tr>
+                                            </ui:repeat>
+                                            <tr>
+                                                <td colspan="6">
+                                                    <p:commandLink action="#{comisionController.instanciarMiembroComisionSppp()}" update=":funcId" 
+                                                                   oncomplete="limpiarAutoComplete();show('#funcionModal');"
+                                                                   rendered="#{comisionController.comisionSppp.miembroComisionSpppList.size() != 4}">
+                                                        Añadir un miembro a la comisión
+                                                    </p:commandLink>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                                <div class="form-actions">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <p:commandLink class="btn btn-success" update=":content" action="#{comisionController.guardarComisionSPPP()}">
+                                                GUARDAR
+                                                <f:setPropertyActionListener
+                                                    target="#{navigatorController.content}"
+                                                    value="./view/pages/administracion/cuentas_sppp/comision_sppp_listar.xhtml" />
+                                            </p:commandLink>
+                                            <p:commandLink class="btn btn-danger" update=":content" process="@this" style="margin-left: 10px;">
+                                                CANCELAR
+                                                <f:setPropertyActionListener
+                                                    target="#{navigatorController.content}"
+                                                    value="./view/pages/administracion/cuentas_sppp/comision_sppp_listar.xhtml" />
+                                            </p:commandLink>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                </div>
+            </article>
+        </div>
+    </section>
+
+
+    <div aria-hidden="true" role="dialog" tabindex="-1" id="funcionModal" class="modal fade">  
+        <div class="modal-dialog">  
+            <div class="modal-content">
+                <div class="modal-header">
+                    Nueva Funcion
+                </div>
+                <div class="modal-body">
+                    <form class="form-horizontal" jsf:id="funcId">
+                        <fieldset>
+                            <div >
+                                <p:messages closable="true" />
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-3 control-label">Posición</label>
+                                <div class="col-md-9">
+                                    <h:selectOneMenu class="form-control" value="#{comisionController.miembroComisionSppp.posicion}">
+                                        <f:selectItem itemValue="PRESIDENTE" itemLabel="PRESIDENTE" />
+                                        <f:selectItem itemValue="SECRETARIO" itemLabel="SECRETARIO" />
+                                        <f:selectItem itemValue="VOCAL 1" itemLabel="VOCAL 1" />
+                                        <f:selectItem itemValue="VOCAL 2" itemLabel="VOCAL 2" />
+                                    </h:selectOneMenu>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-3 control-label">Nombre Docente</label>
+                                <div class="col-md-9">
+<!--                                    <p:autoComplete class="form-control" value="#{comisionController.miembroComisionSppp.idDocente}" completeMethod="#{comisionController.autoCompletarDocente}"
+                                                    var="per" itemLabel="#{per.nombreCompleto}" itemValue="#{per}" converter="converter" forceSelection="true" 
+                                                    emptyMessage="NO HAY REGISTROS QUE COINCIDAN" placeholder="Campo autocompletable" required="true"/>-->
+                                    <h:selectOneMenu class="form-control" value="#{comisionController.miembroComisionSppp.idDocente}" required="true" converter="converter" >
+                                        <f:selectItems value="#{comisionController.listaDocentes}" var="doc" 
+                                                       itemLabel="#{doc.nombreCompleto}" itemValue="#{doc}" />
+                                    </h:selectOneMenu>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-3 control-label">Usuario:</label>
+                                <div class="col-md-9">
+                                    <input type="text" class="form-control" jsf:value="#{comisionController.miembroComisionSppp.idUsuario.nombre}" jsf:required="true" jsf:label="Usuario"/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-3 control-label">Contraseña</label>
+                                <div class="col-md-9">
+                                    <input type="text" class="form-control" jsf:value="#{comisionController.miembroComisionSppp.idUsuario.contrasena}" jsf:required="true" jsf:label="Contraseña"/>
+                                </div>
+                            </div>
+                        </fieldset>
+                        <div class="form-actions">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <p:commandLink class="btn btn-success" action="#{comisionController.guardarMiembroEnLista()}"
+                                                   oncomplete="if(args.validationFailed){alert('FALTAN COMPLETAR CAMPOS');}else{hide('#funcionModal');}" >
+                                        GUARDAR
+                                    </p:commandLink>
+                                    <p:commandLink class="btn btn-danger" process="@this" 
+                                                   style="margin-left: 10px;" oncomplete="hide('#funcionModal');">
+                                        SALIR
+                                    </p:commandLink>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>  
+        </div>  
+    </div>
+
+    <script>
+        limpiarAutoComplete();
+    </script>
+
+</ui:composition>

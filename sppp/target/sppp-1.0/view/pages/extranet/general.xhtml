@@ -1,0 +1,74 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:jsf="http://xmlns.jcp.org/jsf"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui">
+
+    <div class="">
+        <div align="center"><h1><strong><u>REGISTRO Y SEGUIMIENTO DE PPP</u></strong></h1></div><hr/>
+        <div class="danger" jsf:rendered="#{miPracticaController.practicante.observacionPracticanteList.size() != 0}" >
+            <strong>Observaciones</strong>
+            <ul>
+                <ui:repeat value="#{miPracticaController.practicante.observacionPracticanteList}" var="obs" >
+                    <li>#{obs.descripcion}</li>
+                </ui:repeat>
+            </ul><hr/>
+        </div>
+
+        <div align="center" jsf:rendered="#{miPracticaController.practicante.idEstado.id == 1 or miPracticaController.practicante.idEstado.id == null or miPracticaController.practicante.idEstado.id == 4}">
+            <p:commandLink  action="#{miPracticaController.cargarMisDatos()}" update="content">
+                Cargar información de tus Prácticas Pre Profesionales haciendo clic Aquí...
+                <f:setPropertyActionListener target="#{navigatorController.content}"
+                                             value="./view/pages/extranet/ficha.xhtml" />
+            </p:commandLink>
+        </div>
+<br/>
+        <div align="right" class="smart-form">
+            <div style="width: 40%;">
+                <label class="label">ESTADO PRÁCTICA</label>
+                <label class="input">
+                    <input class="input" value="#{miPracticaController.practicante.idEstado.nombre}"></input>
+                </label>            
+            </div>
+        </div>
+
+        <div class="table-responsive">
+            <strong>Datos Personales y Académicos</strong><br/>
+            <table class="table table-bordered table-striped table-condensed has-tickbox">
+                <tr>
+                    <td width="70%;"><strong>Nombre y Apellidos:</strong></td>
+                    <td width="30%;"><strong>Código de alumno:</strong></td>
+                </tr>
+                <tr>
+                    <td>
+                        #{miPracticaController.practicante.nombreCompleto}
+                    </td>
+                    <td>
+                        #{miPracticaController.practicante.codigoAlumno}
+                    </td>
+                </tr>
+                <tr>
+                    <td><strong>Creditos Aprobados:</strong></td>
+                    <td><strong>Email:</strong></td>
+                </tr>
+                <tr>
+                    <td>
+                        #{miPracticaController.practicante.creditosAprobados}
+                    </td>
+                    <td>
+                        #{miPracticaController.practicante.correoElectronico}
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+    </div>
+
+    <div class="" align="center">
+        <h3><strong><u>HISTORIAL DE PPP</u></strong></h3>
+    </div>
+
+</ui:composition>

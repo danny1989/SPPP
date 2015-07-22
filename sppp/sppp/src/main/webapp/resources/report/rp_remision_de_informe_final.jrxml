@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="rp_remision_de_informe_final" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="cbce7949-e608-43c3-8945-77275e5e61ad">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="417"/>
+	<style name="table">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TH" mode="Opaque" backcolor="#A9A9A9">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_CH" mode="Opaque" backcolor="#FFBFBF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<subDataset name="Table Dataset 1" uuid="588145c8-b282-4309-bea4-8b6ea2b90fdf"/>
+	<parameter name="nota" class="java.lang.String"/>
+	<parameter name="id_informe_final" class="java.lang.Integer"/>
+	<queryString>
+		<![CDATA[SELECT
+     oficio."nombre_oficio" AS oficio_nombre_oficio,
+     practicante."titulo_proyecto" AS practicante_titulo_proyecto,
+     practicante."nombre_completo" AS practicante_nombre_completo,
+     informe_final."nombre_decano" AS informe_final_nombre_decano,
+     informe_final."nombre_anio" AS informe_final_nombre_anio
+FROM
+     "public"."oficio" oficio INNER JOIN "public"."informe_final" informe_final ON oficio."id" = informe_final."id_oficio"
+     INNER JOIN "public"."practicante" practicante ON informe_final."id_practicante" = practicante."id"
+WHERE
+    informe_final."id"=$P{id_informe_final}]]>
+	</queryString>
+	<field name="oficio_nombre_oficio" class="java.lang.String"/>
+	<field name="practicante_titulo_proyecto" class="java.lang.String"/>
+	<field name="practicante_nombre_completo" class="java.lang.String"/>
+	<field name="informe_final_nombre_decano" class="java.lang.String"/>
+	<field name="informe_final_nombre_anio" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="802" splitType="Stretch">
+			<textField>
+				<reportElement x="24" y="119" width="172" height="15" uuid="97eadd8d-55db-458b-8a8a-f813e061748b"/>
+				<textElement>
+					<font isUnderline="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{oficio_nombre_oficio}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="315" y="12" width="164" height="40" uuid="8c86b729-61ab-46ab-90a9-68be89f02080"/>
+				<textElement textAlignment="Right">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[FACULTAD DE INGENIERÍA EN INFORMÁTICA Y SISTEMAS
+Comisión de Prácticas Pre Profesionales
+]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="75" y="12" width="178" height="41" uuid="8373640d-7382-4741-af2b-f994d9625626"/>
+				<textElement>
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[UNIVERSIDAD NACIONAL AGRARIA
+DE LA SELVA
+www.unas.edu.pe, fiis@unas.edu.pe
+]]></text>
+			</staticText>
+			<image>
+				<reportElement x="480" y="4" width="117" height="50" uuid="b3c40aff-ca2b-43bb-96c8-2bfce994c4e6"/>
+				<imageExpression><![CDATA["C:\\Users\\Danny\\Desktop\\SPPP\\sppp\\src\\main\\webapp\\resources\\images\\fiiis.jpg"]]></imageExpression>
+			</image>
+			<line>
+				<reportElement x="74" y="46" width="158" height="1" uuid="2ee4c24f-be0c-4759-b756-a43fc879a4e5"/>
+			</line>
+			<image>
+				<reportElement x="32" y="3" width="102" height="51" uuid="82b3fe27-d817-4c1d-a094-a9b7f2b657fe"/>
+				<imageExpression><![CDATA["C:\\Users\\Danny\\Desktop\\SPPP\\sppp\\src\\main\\webapp\\resources\\images\\unas.png"]]></imageExpression>
+			</image>
+			<line>
+				<reportElement x="327" y="46" width="153" height="1" uuid="df50c88e-6f50-41eb-b8ab-c1ab6edbdf60"/>
+			</line>
+			<textField>
+				<reportElement x="25" y="67" width="517" height="20" uuid="e1441ad1-25c1-415d-a69f-ad6fdf61df48"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{informe_final_nombre_anio}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd MMMMM yyyy">
+				<reportElement x="456" y="96" width="86" height="13" uuid="3bdfbfe8-0506-4f29-aaaa-2b94e8308992"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="395" y="96" width="65" height="13" uuid="79dc6d9d-c9cf-4f5b-8261-77e584564f23"/>
+				<text><![CDATA[Tingo María, ]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="24" y="134" width="172" height="20" uuid="f1c6b349-0d24-4b09-8e56-46c35db183da"/>
+				<textFieldExpression><![CDATA[$F{informe_final_nombre_decano}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="24" y="149" width="172" height="15" uuid="f11b0b57-b0d8-4b83-9f98-dc4d0d2070a5"/>
+				<text><![CDATA[Decano FIIS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="25" y="176" width="48" height="20" uuid="8dc13d3b-15a1-482e-bccb-b831484da40c"/>
+				<textElement>
+					<font isBold="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[ASUNTO:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="72" y="176" width="467" height="20" uuid="fc5615b1-9015-4afd-a7a4-90d3809a2d81"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[REMISIÓN DE INFORMES FINALES DE PPP PARA EL TRÁMITE CORRESPONDIENTE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="25" y="206" width="302" height="20" uuid="06d40d39-dc40-4f6a-ac9d-44458d2a3312"/>
+				<text><![CDATA[De mi especial consideración: ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="25" y="234" width="517" height="45" uuid="2768d7e4-19c6-4ac7-b03c-5f5a0632b040"/>
+				<textElement textAlignment="Justified">
+					<font isBold="false"/>
+				</textElement>
+				<text><![CDATA[Es grato dirigirme a usted con la finalidad de saludarlo y al mismo tiempo, hacer de su conocimiento que la Comisión de Prácticas Pre-Profesionales, ha RECEPCIONADO Y VERIFICADO el informe final de las Prácticas Pre-Profesionales presentado por la alumna: ]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="25" y="290" width="517" height="122" uuid="5816a26b-e72a-4a83-9ab8-7d08e5b5b78a"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="25" y="290" width="47" height="33" backcolor="#999999" uuid="304cb193-27ec-4db3-9c26-5a18e2b4d3f8"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="72" y="290" width="150" height="33" backcolor="#999999" uuid="9223157e-a80f-4860-8193-dade4c246f22"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="222" y="290" width="210" height="33" backcolor="#999999" uuid="167456e0-75d5-4d85-92f3-66db3b809cde"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="432" y="290" width="110" height="33" backcolor="#999999" uuid="7b6d5135-2387-4a49-b897-84f72437f22f"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="72" y="323" width="150" height="89" uuid="29c129df-9dbe-4031-ac1a-a92182a4f53c"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="222" y="323" width="210" height="89" uuid="b30035df-911d-4ae4-aa65-71734f8c7e44"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="432" y="323" width="110" height="89" uuid="2944a509-591b-4cc8-9f53-7ace7af171a7"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="40" y="298" width="14" height="20" uuid="102328b3-5e49-4c3d-98e3-0bee8e5fe329"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[N°]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="40" y="351" width="16" height="20" uuid="0b9460c4-b85f-4d0f-a936-6840e026e83a"/>
+				<text><![CDATA[01]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="96" y="299" width="100" height="20" uuid="9f50e44a-1402-48f9-97ed-ad91bb4b52fe"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[ALUMNO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="253" y="299" width="166" height="20" uuid="f9339faf-af62-4803-bbd0-51f5fa8228c3"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[TÍTULO DEL INFORME]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="472" y="299" width="39" height="20" uuid="759ea180-8fe2-4520-acee-ca9d74f96c58"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[NOTA]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="79" y="342" width="137" height="45" uuid="e85ef047-3d10-43e6-bd37-8d396693950f"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{practicante_nombre_completo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="232" y="331" width="187" height="70" uuid="7522c815-aade-43ab-8644-14155dd9c475"/>
+				<textElement textAlignment="Justified"/>
+				<textFieldExpression><![CDATA[$F{practicante_titulo_proyecto}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="439" y="331" width="100" height="70" uuid="478d7ea5-cb57-46ad-b479-4df043f2bf44"/>
+				<textFieldExpression><![CDATA[$P{nota}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="24" y="428" width="518" height="45" uuid="23acacd9-1737-41eb-a748-a8a14d7f3df3"/>
+				<textElement textAlignment="Justified"/>
+				<text><![CDATA[Se remite a su despacho TRES (3) ejemplares del INFORME FINAL de prácticas pre-profesionales, con su respectiva ACTA de sustentación para los trámites correspondientes, las cuales los ejemplares serán distribuidos de acuerdo al reglamento de PPP de la siguiente manera:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="72" y="479" width="470" height="58" uuid="42ca7c99-1689-4f0e-8468-a356b29c29f8"/>
+				<text><![CDATA[a.   Uno para la Facultad de Ingeniería en Informática y Sistemas (Biblioteca especializada).
+b.   Uno para la Biblioteca Central de la UNAS.
+c.   Uno para la organización (empresa) donde el practicante ha realizado las Prácticas Pre-Profesionales.
+]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="24" y="545" width="518" height="113" uuid="f6d3c050-0596-4518-b790-8ea0ac8e8431"/>
+				<text><![CDATA[Cabe indicar que el informe final original la Comisión de Prácticas Pre-Profesionales de la FIIS, ha determinado conservarlo en archivo.
+
+La distribución está a cargo de la Decanatura de la FIIS, según el reglamento de PPP.
+
+Esperando la atención a la presente, y sin otro particular, reitero mis saludos.
+
+Cordialmente,
+]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="168" y="690" width="227" height="34" uuid="0dcc50de-a74d-47c2-a3c6-a8ac0fe5e9c6"/>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[UNIVERSIDAD NACIONAL AGRARIA DE LA SELVA
+FACULTAD DE INGENIERÍA EN INFORMÁTICA Y SISTEMAS
+COMISIÓN DE PRÁCTICAS PRE PROFESIONALES
+]]></text>
+			</staticText>
+			<line>
+				<reportElement x="179" y="750" width="216" height="1" uuid="75d24fea-0f37-4cb6-b7f8-df94ac5e6464"/>
+			</line>
+			<staticText>
+				<reportElement x="198" y="750" width="167" height="25" uuid="8ff9606c-340f-4355-8661-b3cd7a7e63ff"/>
+				<textElement textAlignment="Center">
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[Ing. Edwin J. VEGA VENTOCILLA
+SECRETARIO
+]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="25" y="782" width="100" height="20" uuid="4a3584d1-6a4c-42bc-b95d-6124d81c4f46"/>
+				<text><![CDATA[CC: Archivo]]></text>
+			</staticText>
+		</band>
+	</title>
+</jasperReport>

@@ -1,0 +1,150 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:jsf="http://xmlns.jcp.org/jsf"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui">
+
+
+    <section id="widget-grid" class="">
+        <div class="row">
+            <!-- NEW COL START -->
+            <article class="col-sm-12">
+                <div class="jarviswidget jarviswidget-color-blueDark" id="wid-id-0" data-widget-colorbutton="false" data-widget-editbutton="false" data-widget-custombutton="false">
+
+                    <header>
+                        <span class="widget-icon"> <i class="fa fa-edit"></i> </span>
+                        <h2>Crear / Editar docente...</h2>
+
+                    </header>
+
+                    <div>
+                        <div class="jarviswidget-editbox">
+                        </div>
+
+                        <div class="widget-body">
+                            <div class="widget-body-toolbar">
+
+                                <div class="row">
+
+                                    <div class="col-sm-6">
+                                        <p:commandLink class="btn btn-primary" update="content" action="#{docenteController.inicializarListaDocentes()}">
+                                            Lista Docentes
+                                            <f:setPropertyActionListener
+                                                target="#{navigatorController.content}"
+                                                value="./view/pages/administracion/docente/docente_listar.xhtml" />
+                                        </p:commandLink>
+                                        <p:commandLink class="btn btn-success" update="content"
+                                                       action="#{docenteController.inicializarInstanciaDocente()}">
+                                            Nuevo Docente
+                                            <f:setPropertyActionListener
+                                                target="#{navigatorController.content}"
+                                                value="./view/pages/administracion/docente/docente_crear.xhtml" />
+                                        </p:commandLink>
+                                    </div>
+
+                                    <div class="col-sm-6 text-right">
+
+                                    </div>
+
+                                </div>
+                            </div>
+                            <form class="form-horizontal" jsf:id="idConvenio">
+                                <fieldset>
+                                    <legend >
+                                        Nuevo Docente
+                                    </legend>
+                                    <div class="form-group">
+                                        <label class="col-md-2 control-label">Grado</label>
+                                        <div class="col-md-7">
+                                            <h:selectOneMenu class="form-control" value="#{docenteController.docente.grado}">
+                                                <f:selectItem itemLabel="Ing." itemValue="Ing." />
+                                                <f:selectItem itemLabel="Msc." itemValue="Msc." />
+                                                <f:selectItem itemLabel="Bch." itemValue="Bch." />
+                                                <f:selectItem itemLabel="Doc." itemValue="Doc." />
+                                                <f:selectItem itemLabel="Lic." itemValue="Lic." />
+                                            </h:selectOneMenu>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-2 control-label">Nombre</label>
+                                        <div class="col-md-7">
+                                            <input class="form-control" type="text" jsf:value="#{docenteController.docente.nombre}"/>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-2 control-label">Paterno</label>
+                                        <div class="col-md-7">
+                                            <input class="form-control" type="text" jsf:value="#{docenteController.docente.paterno}"/>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-2 control-label">Materno</label>
+                                        <div class="col-md-7">
+                                            <input class="form-control" type="text" jsf:value="#{docenteController.docente.materno}"/>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-2 control-label">Email</label>
+                                        <div class="col-md-7">
+                                            <input class="form-control" type="text" jsf:value="#{docenteController.docente.email}"/>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-2 control-label">Teléfono</label>
+                                        <div class="col-md-7">
+                                            <input class="form-control" type="text" jsf:value="#{docenteController.docente.telefono}"/>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-2 control-label">Área</label>
+                                        <div class="col-md-7">
+                                            <h:selectOneMenu class="form-control" value="#{docenteController.docente.idArea}">
+                                                <f:selectItem itemLabel="Sistemas" itemValue="1" />
+                                                <f:selectItem itemLabel="Informática" itemValue="2" />
+                                                <f:selectItem itemLabel="Ciencias Básicas" itemValue="3" />
+                                            </h:selectOneMenu>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-2 control-label">Especialidad</label>
+                                        <div class="col-md-7">
+                                            <h:selectOneMenu class="form-control" value="#{docenteController.docente.idEspecialidad}">
+                                                <f:selectItem itemLabel="Software" itemValue="1" />
+                                                <f:selectItem itemLabel="Redes" itemValue="2" />
+                                                <f:selectItem itemLabel="Nose" itemValue="3" />
+                                            </h:selectOneMenu>
+                                        </div>
+                                    </div>
+                                </fieldset>
+                                <div class="form-actions">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <p:commandLink class="btn btn-success" update=":content" action="#{docenteController.guardarDocente()}">
+                                                GUARDAR
+                                                <f:setPropertyActionListener
+                                                    target="#{navigatorController.content}"
+                                                    value="./view/pages/administracion/docente/docente_listar.xhtml" />
+                                            </p:commandLink>
+                                            <p:commandLink class="btn btn-danger" update=":content" process="@this" style="margin-left: 10px;">
+                                                CANCELAR
+                                                <f:setPropertyActionListener
+                                                    target="#{navigatorController.content}"
+                                                    value="./view/pages/administracion/docente/docente_listar.xhtml" />
+                                            </p:commandLink>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                </div>
+            </article>
+        </div>
+    </section>
+
+
+</ui:composition>

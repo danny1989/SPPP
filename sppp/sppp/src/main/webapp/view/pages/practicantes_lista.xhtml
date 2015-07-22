@@ -1,0 +1,121 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:jsf="http://xmlns.jcp.org/jsf"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui">
+
+
+    <section id="widget-grid" class="">
+        <div class="row">
+            <!-- NEW COL START -->
+            <article class="col-sm-12">
+                <div class="jarviswidget jarviswidget-color-blueDark" id="wid-id-0" data-widget-colorbutton="false" data-widget-editbutton="false" data-widget-custombutton="false">
+
+                    <header>
+                        <span class="widget-icon"> <i class="fa fa-edit"></i> </span>
+                        <h2>Lista de practicantes...</h2>
+
+                    </header>
+
+                    <div>
+                        <div class="jarviswidget-editbox">
+                        </div>
+
+                        <div class="widget-body">
+                            <div class="widget-body-toolbar">
+
+                                <div class="row">
+
+                                    <div class="col-sm-6">
+
+                                    </div>
+
+                                    <div class="col-sm-6 text-right">
+
+                                    </div>
+
+                                </div>
+                            </div>
+                            <h:form>
+                                <div class="table-responsive">
+
+                                    <p:dataTable value="#{evaluacionController.listaPracticantes}" var="pract"
+                                                 paginator="true" rows="10" >
+                                        <p:column width="5%">
+                                            <p:menuButton value="#{pract.codigoEstudiante}" >
+                                                <p:menuitem value=" Asignar Jurados" update=":content" 
+                                                            action="#{evaluacionController.getPracticateById(pract.idPracticante)}">
+                                                    <f:setPropertyActionListener
+                                                        target="#{navigatorController.content}"
+                                                        value="./view/pages/evaluacion/jurado/asignar_jurado.xhtml" />
+                                                </p:menuitem>
+                                                <p:separator />
+                                                <p:menuitem value=" Asignar Nota" update=":content" 
+                                                            disabled="#{(pract.nombreEstado eq 'INFORME ENTREGADO BORRADOR')}"
+                                                            action="#{asignarNotaController.cargarDetallePracticante(pract.idPracticante)}">
+                                                    <f:setPropertyActionListener
+                                                        target="#{navigatorController.content}"
+                                                        value="./view/pages/evaluacion/nota/asignar_nota.xhtml" />
+                                                </p:menuitem>
+                                                <p:separator />
+                                                <p:menuitem value=" Entrega Informe Final" update=":content" action="#{entregaInformeFinalController.getPracticateById(pract.idPracticante)}"
+                                                            disabled="#{(pract.nombreEstado eq 'INFORME ENTREGADO BORRADOR')}">
+                                                    <f:setPropertyActionListener
+                                                        target="#{navigatorController.content}"
+                                                        value="./view/pages/evaluacion/informe_final/entrega_informe_final.xhtml" />
+                                                </p:menuitem>
+                                            </p:menuButton>
+
+                                        </p:column>
+                                        <p:column headerText="Nombre Practicante" >
+                                            #{pract.nombrePracticante}
+                                        </p:column>
+                                        <p:column headerText="Nombre Asesor">
+                                            #{pract.nombreDocente}
+                                        </p:column>
+                                        <p:column headerText="Título de Proyecto">
+                                            #{pract.tituloProyecto}
+                                        </p:column>
+                                        <p:column headerText="Periodo Prácticas" style="text-align: center;">
+                                            <h:outputText value="#{pract.fechaInicio}">
+                                                <f:convertDateTime pattern="dd/MM/yyyy" />
+                                            </h:outputText> al
+                                            <h:outputText value="#{pract.fechaFin}">
+                                                <f:convertDateTime pattern="dd/MM/yyyy" />
+                                            </h:outputText>
+                                        </p:column>
+                                        <!--                                        <p:column headerText="Ampliación" style="text-align: center;">
+                                        #{pract.mesesAmpliacion eq null?'0':pract.mesesAmpliacion}
+                                    </p:column>
+                                        -->                                        
+                                        <p:column headerText="Duración de Práctica" style="text-align: center;">
+                                            #{pract.mesesAmpliacion + 3}
+                                        </p:column>
+<!--                                        <p:column headerText="Estado General">
+                                            #{pract.nombreEstadoGeneral}
+                                        </p:column>-->
+                                        <p:column headerText="Estado Específico">
+                                            #{pract.nombreEstado}
+                                        </p:column>
+                                    </p:dataTable>
+                                </div>
+
+                            </h:form>
+                        </div>
+                    </div>
+
+                </div>
+            </article>
+        </div>
+    </section>
+
+    <script>
+        $('table').addClass('table table-bordered table-striped table-condensed table-hover has-tickbox');
+
+        $('table').closest('div.ui-datatable').removeClass();
+        $('table thead th').removeClass('ui-state-default');
+    </script>
+</ui:composition>

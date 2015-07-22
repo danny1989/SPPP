@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="rp_acta_sustentacion" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="2a4e2fa4-1b52-491b-99d8-9d00dd26b2ae">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="id_sustentacion" class="java.lang.Integer"/>
+	<queryString>
+		<![CDATA[SELECT
+     sustentacion."fecha_sustentacion" AS sustentacion_fecha_sustentacion,
+     sustentacion."lugar_sustentacion" AS sustentacion_lugar_sustentacion,
+     (presidente."grado"||' '||presidente."nombre_completo") AS nombre_presidente,
+     (secretario."grado"||' '||secretario."nombre_completo") AS nombre_secretario,
+     (vocal_uno."grado"||' '||vocal_uno."nombre_completo") AS nombre_vocal_uno,
+     (vocal_dos."grado"||' '||vocal_dos."nombre_completo") AS nombre_vocal_dos,
+     practicante."nombre_completo" AS practicante_nombre_completo,
+     practicante."titulo_proyecto" AS practicante_titulo_proyecto
+FROM
+     "public"."sustentacion" sustentacion INNER JOIN "public"."docente" presidente ON sustentacion."id_presidente" = presidente."id"
+     INNER JOIN "public"."docente" secretario ON sustentacion."id_secretario" = secretario."id"
+     INNER JOIN "public"."docente" vocal_uno ON sustentacion."id_vocal_uno" = vocal_uno."id"
+     INNER JOIN "public"."docente" vocal_dos ON sustentacion."id_vocal_dos" = vocal_dos."id"
+     INNER JOIN "public"."practicante" practicante ON sustentacion."id_practicante" = practicante."id"
+WHERE
+    sustentacion."id"=$P{id_sustentacion}]]>
+	</queryString>
+	<field name="sustentacion_fecha_sustentacion" class="java.sql.Timestamp"/>
+	<field name="sustentacion_lugar_sustentacion" class="java.lang.String"/>
+	<field name="nombre_presidente" class="java.lang.String"/>
+	<field name="nombre_secretario" class="java.lang.String"/>
+	<field name="nombre_vocal_uno" class="java.lang.String"/>
+	<field name="nombre_vocal_dos" class="java.lang.String"/>
+	<field name="practicante_nombre_completo" class="java.lang.String"/>
+	<field name="practicante_titulo_proyecto" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="802" splitType="Stretch">
+			<textField>
+				<reportElement x="146" y="136" width="346" height="20" uuid="cce9a387-659c-4095-82fe-42574c097e12"/>
+				<textElement>
+					<font fontName="Verdana" size="11" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{practicante_nombre_completo}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="37" y="110" width="473" height="20" uuid="ade7f86a-341d-4705-a78b-d7c75c3356cd"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="12" isBold="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[ACTA DE SUSTENTACIÓN DE PRÁCTICAS PRE-PROFESIONALES]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="63" y="136" width="83" height="20" uuid="00eaaf60-76ef-4155-9276-7d9b554fa92c"/>
+				<textElement>
+					<font fontName="Arial" size="11"/>
+				</textElement>
+				<text><![CDATA[Del Alumno  (a):]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="64" y="198" width="446" height="20" uuid="471c7931-f2a9-4acf-a149-62236b00c8ed"/>
+				<textElement>
+					<font fontName="Arial" size="11"/>
+				</textElement>
+				<text><![CDATA[Se instala el Jurado Calificador integrado por:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="98" y="226" width="362" height="20" uuid="1106677f-b670-49e9-816c-ca0b9c1b9183"/>
+				<textElement>
+					<font fontName="Verdana" size="11" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["1." + $F{nombre_presidente}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="98" y="247" width="362" height="20" uuid="6be0d80a-fa7a-4693-ae2a-a3024f75f890"/>
+				<textElement>
+					<font fontName="Verdana" size="11" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["2." + $F{nombre_secretario}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="98" y="268" width="362" height="20" uuid="f829e7f8-3b60-4173-8bf3-912e90572bcb"/>
+				<textElement>
+					<font fontName="Verdana" size="11" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["3." + $F{nombre_vocal_uno}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="98" y="289" width="362" height="20" uuid="dbf507b3-aa43-4499-a643-b0442253c853"/>
+				<textElement>
+					<font fontName="Verdana" size="11" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["4." + $F{nombre_vocal_dos}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="65" y="331" width="445" height="44" uuid="42969f7c-65dc-4407-8960-5ed20c5e3a90"/>
+				<text><![CDATA[Y se manifiesta que el alumno cumple con los requisitos oficiales
+	- 160 créditos mínimos aprobados
+	- Certificado de Prácticas Pre-Profesionales
+]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="65" y="392" width="445" height="33" uuid="62125aca-c13e-4967-9fa9-c79431f8cf04"/>
+				<text><![CDATA[Se procede a invitar al señor alumno a la sustentación de su respectivo Informe de Prácticas Pre- Profesionales, titulado:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="65" y="425" width="445" height="38" uuid="a16339f8-fb75-4e71-970e-88672e901b0e"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{practicante_titulo_proyecto}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="65" y="479" width="445" height="43" uuid="34dce2d3-d87b-4dd1-9d2a-ea217f448227"/>
+				<textElement verticalAlignment="Top"/>
+				<text><![CDATA[Concluida la exposición el jurado delibera sobre la calificación, obteniendo la NOTA de:....................................................., por lo que la sustentación de Prácticas Pre-Profesionales resulta.................................................]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="65" y="539" width="445" height="40" uuid="fc9d5ef1-f5e8-49a4-84d9-2b1e55067481"/>
+				<text><![CDATA[Siendo las…..…….………………….……….. horas se da por culminada la Sustentación, para lo cual firman:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="130" y="627" width="100" height="20" uuid="6710b52b-27d4-4cd9-bb1f-2824dbb01571"/>
+				<textFieldExpression><![CDATA[$F{nombre_presidente}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="345" y="627" width="100" height="20" uuid="93eecb7f-b396-4442-be62-865bcfbe3f16"/>
+				<textFieldExpression><![CDATA[$F{nombre_secretario}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="130" y="680" width="100" height="20" uuid="a3aa4b6f-cb80-4be9-acf3-ceabd075b42d"/>
+				<textFieldExpression><![CDATA[$F{nombre_vocal_uno}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="345" y="680" width="100" height="20" uuid="4eccd3e3-bf81-4d86-93a3-525280042421"/>
+				<textFieldExpression><![CDATA[$F{nombre_vocal_dos}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="230" y="748" width="100" height="20" uuid="a1709b03-d896-472a-ab59-ed5b4dd4232e"/>
+				<textFieldExpression><![CDATA[$F{practicante_nombre_completo}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="130" y="647" width="100" height="20" uuid="57d47892-42bb-4795-8820-a639aa700d55"/>
+				<text><![CDATA[Presidente]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="345" y="649" width="100" height="20" uuid="bcf6ca00-103a-40d3-a798-0fd9d7e85645"/>
+				<text><![CDATA[Secretario]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="130" y="700" width="100" height="20" uuid="25e336e2-605d-4993-b81d-8f433de6c7c8"/>
+				<text><![CDATA[Vocal]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="345" y="700" width="100" height="20" uuid="6e1c64db-0bdf-4d2d-8610-352501178d63"/>
+				<text><![CDATA[Vocal]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="230" y="768" width="100" height="20" uuid="3b029a47-e091-492f-b2b1-e7bd621485eb"/>
+				<text><![CDATA[Sustentante]]></text>
+			</staticText>
+			<line>
+				<reportElement x="130" y="626" width="100" height="1" uuid="7cf7a255-7a27-4d70-a6b4-57d71ef650b1"/>
+			</line>
+			<line>
+				<reportElement x="345" y="627" width="100" height="1" uuid="94cf3662-69b3-42ce-8cfb-e88deabea020"/>
+			</line>
+			<line>
+				<reportElement x="130" y="679" width="100" height="1" uuid="1ffc4c75-1674-4706-b92d-f269b27743d6"/>
+			</line>
+			<line>
+				<reportElement x="345" y="680" width="100" height="1" uuid="b83425e5-07d2-4486-8660-3a4c1220fb32"/>
+			</line>
+			<line>
+				<reportElement x="230" y="748" width="100" height="1" uuid="600cc85a-0b11-4333-971d-55c9c9afdac3"/>
+			</line>
+			<image>
+				<reportElement x="27" y="12" width="65" height="80" uuid="981b294e-25dc-4b4e-948f-7f3fd1c77d11"/>
+				<imageExpression><![CDATA["C:\\Users\\Danny\\Desktop\\Logos\\unas2.png"]]></imageExpression>
+			</image>
+			<image>
+				<reportElement x="456" y="12" width="107" height="73" uuid="a0e0328c-a7d9-4a7a-bc00-7667e6e40dca"/>
+				<imageExpression><![CDATA["C:\\Users\\Danny\\Desktop\\Logos\\fiis2.png"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="89" y="16" width="369" height="20" forecolor="#009933" uuid="0539f664-4d29-4b5e-8ca1-c0cc064d43d8"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[UNIVERSIDAD NACIONAL AGRARIA DE LA SELVA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="224" y="34" width="100" height="21" forecolor="#009933" uuid="1583d92d-b1b3-4863-b4d2-3c3c1ae7b64e"/>
+				<textElement textAlignment="Center">
+					<font fontName="Calibri" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Tingo María]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="100" y="52" width="352" height="20" forecolor="#3300CC" uuid="ecc6ba71-1045-40b3-9d42-fab9f0e249fa"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[FACULTAD DE INGENIERÍA EN INFORMÁTICA Y SISTEMAS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="109" y="67" width="341" height="25" forecolor="#009933" uuid="311b3e95-c131-45dd-9559-b84352283039"/>
+				<textElement textAlignment="Center">
+					<font fontName="MoolBoran" size="18" isBold="true"/>
+				</textElement>
+				<text><![CDATA[“COMISION DE PRÁCTICAS PRE PROFESIONALES”]]></text>
+			</staticText>
+			<image>
+				<reportElement x="27" y="85" width="493" height="14" uuid="d0ca830d-2117-42b3-b58b-f0866b021ac1"/>
+				<imageExpression><![CDATA["C:\\Users\\Danny\\Desktop\\Logos\\barra.png"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="63" y="156" width="447" height="42" uuid="ea65fde6-c427-49df-98b1-edc175ea8e2d"/>
+				<textElement>
+					<font fontName="Arial" size="11"/>
+				</textElement>
+				<text><![CDATA[Siendo las…………...………………. del día……………..………de……..……………………del dos mil Quince. Se instala el Jurado Calificador integrado por:]]></text>
+			</staticText>
+		</band>
+	</title>
+</jasperReport>

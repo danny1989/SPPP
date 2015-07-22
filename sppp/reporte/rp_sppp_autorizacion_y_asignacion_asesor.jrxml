@@ -1,0 +1,309 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="rp_sppp_autorizacion_y_asignacion_asesor" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="df5046b8-f896-4689-93f3-5d14cf50aa2f">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="336"/>
+	<parameter name="ID_PRACTICANTE" class="java.lang.Integer"/>
+	<queryString>
+		<![CDATA[SELECT
+     practicante."nombre_completo" AS practicante_nombre_completo,
+     (docente."grado"||' '||docente."nombre_completo") AS docente_nombre_completo,
+     practicante."lu_razon_social" AS practicante_lugar,
+     practicante."titulo_proyecto" AS practicante_tema,
+     to_char(practicante."fecha_inicio", 'DD-MM-YYYY')||' al '||to_char(practicante."fecha_fin", 'DD-MM-YYYY') AS practicante_periodo,
+     asesor."numero_acuerdo" AS asesor_numero_acuerdo,
+     asesor."numero_solicitud" AS asesor_numero_solicitud,
+     asesor."nombre_decano" AS asesor_nombre_decano,
+     asesor."nombre_anio" AS asesor_nombre_anio,
+     to_char(asesor."fecha_asignacion", 'DD Mon YYYY') AS asesor_fecha_asignacion
+FROM
+     "public"."practicante" practicante INNER JOIN "public"."asesor" asesor ON practicante."id" = asesor."id_practicante"
+     INNER JOIN "public"."docente" docente ON asesor."id_docente" = docente."id"
+WHERE practicante."id"=$P{ID_PRACTICANTE}]]>
+	</queryString>
+	<field name="practicante_nombre_completo" class="java.lang.String"/>
+	<field name="docente_nombre_completo" class="java.lang.String"/>
+	<field name="practicante_lugar" class="java.lang.String"/>
+	<field name="practicante_tema" class="java.lang.String"/>
+	<field name="practicante_periodo" class="java.lang.String"/>
+	<field name="asesor_numero_acuerdo" class="java.lang.String"/>
+	<field name="asesor_numero_solicitud" class="java.lang.String"/>
+	<field name="asesor_nombre_decano" class="java.lang.String"/>
+	<field name="asesor_nombre_anio" class="java.lang.String"/>
+	<field name="asesor_fecha_asignacion" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<columnHeader>
+		<band height="802" splitType="Stretch">
+			<textField isBlankWhenNull="true">
+				<reportElement isPrintRepeatedValues="false" x="21" y="122" width="227" height="16" uuid="1fac27b9-9937-4726-93cc-48fb8db9f05f"/>
+				<textElement>
+					<font fontName="Calibri" size="11" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{asesor_numero_acuerdo}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement isPrintRepeatedValues="false" x="21" y="148" width="171" height="15" uuid="13c2bd85-bc6b-48d4-a217-166cb72364f1"/>
+				<textElement>
+					<font fontName="Calibri" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Sr. " + $F{asesor_nombre_decano}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="21" y="163" width="100" height="14" uuid="f85fc6d9-4daf-4417-ab0d-b2114d2f805a"/>
+				<textElement>
+					<font fontName="Calibri" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Decano de la FIIS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="21" y="188" width="100" height="14" uuid="d58f1b85-026c-45de-9e46-9b218386f0ed"/>
+				<textElement>
+					<font fontName="Calibri" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[VISTO:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement isPrintRepeatedValues="false" x="21" y="205" width="523" height="39" uuid="6b2ad33a-afa9-42d8-9ea8-933def0a048f"/>
+				<textElement textAlignment="Justified">
+					<font fontName="Calibri" size="11" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA["La solicitud única de trámite " + $F{asesor_numero_solicitud} + ", adjuntando el Formato 1 de PPP y solicitando realizar las practicas pre profesionales."]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="21" y="252" width="100" height="14" uuid="f9431150-9c3d-460b-859d-6b89bfd97b7a"/>
+				<textElement>
+					<font fontName="Calibri" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[CONSIDERANDO:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="21" y="269" width="523" height="34" uuid="d3cfc6be-0de7-469a-afae-c821c6df40a8"/>
+				<textElement textAlignment="Justified">
+					<font fontName="Calibri" size="11"/>
+				</textElement>
+				<text><![CDATA[Que las solicitudes y el formato, cumplen con los requisitos según reglamento, para realizar las practicas pre profesionales.]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement isPrintRepeatedValues="false" x="21" y="312" width="523" height="34" uuid="8cd90410-78c5-47c6-bd76-d28a10bf580d"/>
+				<textElement textAlignment="Justified">
+					<font fontName="Calibri" size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA["La Comisión de Prácticas Pre Profesionales de la FIIS, en sesión extraordinaria de fecha " + $F{asesor_fecha_asignacion} + ", tomó el siguiente:"]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement isPrintRepeatedValues="false" x="125" y="353" width="279" height="25" uuid="db780f41-2f6f-4a11-9966-b64165165168"/>
+				<textElement textAlignment="Center">
+					<font fontName="Calibri" size="16" isBold="true" isItalic="true" isUnderline="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{asesor_numero_acuerdo}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="21" y="394" width="100" height="20" uuid="d76f687b-9570-4d9a-a580-0c9b45fb51f1"/>
+				<textElement>
+					<font fontName="Calibri" size="11" isBold="true" isItalic="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[Artículo Primero:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="28" y="395" width="516" height="36" uuid="f3d5e062-9e5d-4a87-913d-3440eeb3e0f5"/>
+				<textElement textAlignment="Justified">
+					<font fontName="Calibri" size="11"/>
+				</textElement>
+				<text><![CDATA[                                  AUTORIZAR Y APROBAR LAS PRÁCTICAS PRE PROFESIONALES CON EL TEMA Y EL LUGAR DE EJECUCIÓN; DESIGNAR AL ASESOR EN EL PERIODO DE PRÁCTICAS PRE PROFESIONALES, COMO SE DETALLA:]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="19" y="436" width="21" height="36" uuid="7b68604b-15e2-4539-b1c1-31ae5a31ddff"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="40" y="436" width="119" height="36" uuid="15b60b38-0605-4c4d-a75d-52b7cd24e35f"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="248" y="436" width="219" height="36" uuid="7c8460fd-e5e4-465d-8256-a5d3fefdc0ce"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="159" y="436" width="89" height="36" uuid="aabee5e7-9ff1-4c89-b8bd-384d42f4b3f8"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="467" y="436" width="78" height="36" uuid="bdb38c75-5f82-421e-aaf1-f39b9a1e2f97"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="474" y="441" width="68" height="27" uuid="cadec65b-7ad8-4bad-9440-7cfef64ce223"/>
+				<textElement textAlignment="Center">
+					<font fontName="Calibri" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[PERIODO DE PPP]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="301" y="444" width="116" height="19" uuid="01db6339-a60b-421b-83ef-7840f3619125"/>
+				<textElement textAlignment="Center">
+					<font fontName="Calibri" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[LUGAR Y TEMA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="163" y="444" width="75" height="19" uuid="2f99a129-ac64-4505-be08-543ee3da5c93"/>
+				<textElement textAlignment="Center">
+					<font fontName="Calibri" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ASESOR]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="44" y="444" width="109" height="19" uuid="f9d541e4-edb9-452d-9a7f-282b3a2e4a58"/>
+				<textElement textAlignment="Center">
+					<font fontName="Calibri" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[APELLIDOS Y NOMBRES]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="19" y="444" width="19" height="19" uuid="18ecee31-b4d3-45e4-8e03-8d277aa37845"/>
+				<textElement textAlignment="Center">
+					<font fontName="Calibri" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[N°]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="19" y="472" width="21" height="100" uuid="98408b78-82d2-462a-9e7b-1c4247d69df0"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="40" y="472" width="119" height="100" uuid="1de76a3b-7805-4e4b-9121-c39c5250f93b"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="159" y="472" width="89" height="100" uuid="f9e49e3d-d86d-4480-bdb3-3244c2fb92a5"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="248" y="472" width="219" height="100" uuid="dfce1625-9192-4ae4-9d78-ad0034e1b3ec"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="467" y="472" width="78" height="100" uuid="8521faad-0ccc-4266-85dc-0bcc282b6bb2"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="24" y="493" width="10" height="27" uuid="7d92537b-7281-402d-ba52-780d43c60478"/>
+				<text><![CDATA[1]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement isPrintRepeatedValues="false" x="45" y="489" width="100" height="55" uuid="d7dfdc51-cc62-4e54-b1ff-81badc10052d"/>
+				<textFieldExpression><![CDATA[$F{practicante_nombre_completo}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement isPrintRepeatedValues="false" x="164" y="489" width="74" height="55" uuid="c7857f6f-6e4a-469f-b069-4606fbbf83c1"/>
+				<textFieldExpression><![CDATA[$F{docente_nombre_completo}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement isPrintRepeatedValues="false" x="477" y="489" width="61" height="55" uuid="543a0a30-fbc7-4331-8e97-2ded62d61343"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{practicante_periodo}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="22" y="597" width="100" height="20" uuid="9e718736-2d99-43c1-b9b8-de8dfc5952ea"/>
+				<textElement>
+					<font fontName="Calibri" size="11" isBold="true" isItalic="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[Artículo Segundo:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="34" y="598" width="510" height="36" uuid="1063d881-6bc0-49e6-8c98-7bff62d55e84"/>
+				<textElement textAlignment="Justified">
+					<font fontName="Calibri" size="11"/>
+				</textElement>
+				<text><![CDATA[                         SE EMITA LA RESOLUCIÓN DE AUTORIZACIÓN Y DESIGNACIÓN DE ASESOR A LOS INTERESADOS, COMISIÓN DE PPP Y AL DOCENTE DESIGNADO PARA ASESOR.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="22" y="648" width="208" height="20" uuid="77f22299-1aa5-48ad-9353-dcd0aa45b634"/>
+				<text><![CDATA[Regístrese, comuníquese y archivase  ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="198" y="686" width="227" height="34" uuid="2f04c2aa-dc2a-442e-93d7-8cc2a8d4d4bf"/>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[UNIVERSIDAD NACIONAL AGRARIA DE LA SELVA
+FACULTAD DE INGENIERÍA EN INFORMÁTICA Y SISTEMAS
+COMISIÓN DE PRÁCTICAS PRE PROFESIONALES
+]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="226" y="747" width="167" height="25" uuid="45946ad3-8001-4042-93bb-5b29414e3d22"/>
+				<textElement textAlignment="Center">
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[Ing. Edwin J. VEGA VENTOCILLA
+SECRETARIO
+]]></text>
+			</staticText>
+			<line>
+				<reportElement x="207" y="747" width="216" height="1" uuid="32ec9e6e-1fc3-48c7-955b-235888cb08b3"/>
+			</line>
+			<textField pattern="dd MMMMM yyyy">
+				<reportElement x="458" y="91" width="86" height="13" uuid="c99fa69a-22b0-4a05-9fdb-c756c86b8c05"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="391" y="91" width="65" height="13" uuid="5fc2a454-ffa7-4b46-bb6a-90e32adcecb5"/>
+				<text><![CDATA[Tingo María, ]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement isPrintRepeatedValues="false" x="85" y="66" width="366" height="14" uuid="5cbe1e30-abf1-46cc-a1b2-5d475af6e298"/>
+				<textElement textAlignment="Center">
+					<font isBold="true" isItalic="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{asesor_nombre_anio}]]></textFieldExpression>
+			</textField>
+			<image>
+				<reportElement x="30" y="2" width="102" height="51" uuid="079329c1-408a-4e6e-b083-821f818a2b7c"/>
+				<imageExpression><![CDATA["C:\\Users\\Danny\\Desktop\\SPPP\\sppp\\src\\main\\webapp\\resources\\images\\unas.png"]]></imageExpression>
+			</image>
+			<image>
+				<reportElement x="478" y="3" width="117" height="50" uuid="8a1a609b-d7c6-4e23-8bab-9d4e9094643f"/>
+				<imageExpression><![CDATA["C:\\Users\\Danny\\Desktop\\SPPP\\sppp\\src\\main\\webapp\\resources\\images\\fiiis.jpg"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="73" y="10" width="178" height="41" uuid="1f689f0e-b40f-4060-910a-663929589549"/>
+				<textElement>
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[UNIVERSIDAD NACIONAL AGRARIA
+DE LA SELVA
+www.unas.edu.pe, fiis@unas.edu.pe
+]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="313" y="11" width="164" height="40" uuid="e40b341e-1953-4107-be2e-0464a8510983"/>
+				<textElement textAlignment="Right">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[FACULTAD DE INGENIERÍA EN INFORMÁTICA Y SISTEMAS
+Comisión de Prácticas Pre Profesionales
+]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="275" y="66" width="100" height="0" uuid="b10cac14-8dc7-47ac-9366-2069aeef39a5"/>
+			</rectangle>
+			<line>
+				<reportElement x="325" y="45" width="153" height="1" uuid="cda7f939-faea-4ae4-bd65-89edbb281597"/>
+			</line>
+			<line>
+				<reportElement x="72" y="44" width="158" height="1" uuid="dac85b53-07f9-48d9-8837-413d0b6b89fa"/>
+			</line>
+			<line>
+				<reportElement x="21" y="136" width="186" height="1" uuid="eded9404-9269-4135-80af-b0aa9b5ede20"/>
+			</line>
+			<textField isBlankWhenNull="true">
+				<reportElement isPrintRepeatedValues="false" x="251" y="475" width="212" height="28" uuid="cf974a33-9daa-40da-b1c9-ff579dcf8b4c"/>
+				<textFieldExpression><![CDATA[$F{practicante_lugar}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="251" y="516" width="212" height="56" uuid="37439cc7-40d6-4718-8ec1-b20709883db5"/>
+				<textFieldExpression><![CDATA[" ' " + $F{practicante_tema} + " ' "]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="251" y="503" width="108" height="13" uuid="5058c8f1-7b3e-483f-a3e6-0a9f1aa836ea"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[TEMA:]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+</jasperReport>

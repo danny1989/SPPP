@@ -1,0 +1,583 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="rp_sppp_formato_f1" pageWidth="595" pageHeight="842" columnWidth="515" leftMargin="40" rightMargin="40" topMargin="20" bottomMargin="20" uuid="635ba8d8-bec1-4f7b-a8f8-6b5bda4f383b">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="254"/>
+	<style name="table">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<parameter name="ID_PRACTICANTE" class="java.lang.Integer"/>
+	<queryString>
+		<![CDATA[SELECT
+     practicante."nombre_completo" AS practicante_nombre_completo,
+     practicante."id" AS practicante_id,
+     practicante."codigo_alumno" AS practicante_codigo_alumno,
+     practicante."fecha_inicio" AS practicante_fecha_inicio,
+     practicante."fecha_fin" AS practicante_fecha_fin,
+     practicante."telefono" AS practicante_telefono,
+     practicante."correo_electronico" AS practicante_correo_electronico,
+     practicante."titulo_proyecto" AS practicante_titulo_proyecto,
+     practicante."resumen_propuesta" AS practicante_resumen_propuesta,
+     practicante."lu_website" AS practicante_lu_website,
+     practicante."lu_responsable_area" AS practicante_lu_responsable_area,
+     practicante."lu_area_asignada" AS practicante_lu_area_asignada,
+     practicante."lu_email" AS practicante_lu_email,
+     practicante."lu_razon_social" AS practicante_lu_razon_social,
+     practicante."lu_titular" AS practicante_lu_titular,
+     practicante."lu_telefono" AS practicante_lu_telefono,
+     practicante."lu_cargo" AS practicante_lu_cargo,
+     practicante."codigo_proyecto" AS practicante_codigo_proyecto,
+     practicante."creditos_aprobados" AS practicante_creditos_aprobados,
+     estado."nombre" AS estado_nombre
+FROM
+     "public"."practicante" practicante INNER JOIN "public"."estado" estado ON practicante."id_estado" = estado."id" WHERE practicante."id"=$P{ID_PRACTICANTE}]]>
+	</queryString>
+	<field name="practicante_nombre_completo" class="java.lang.String"/>
+	<field name="practicante_id" class="java.lang.Integer"/>
+	<field name="practicante_codigo_alumno" class="java.lang.String"/>
+	<field name="practicante_fecha_inicio" class="java.sql.Date"/>
+	<field name="practicante_fecha_fin" class="java.sql.Date"/>
+	<field name="practicante_telefono" class="java.lang.String"/>
+	<field name="practicante_correo_electronico" class="java.lang.String"/>
+	<field name="practicante_titulo_proyecto" class="java.lang.String"/>
+	<field name="practicante_resumen_propuesta" class="java.lang.String"/>
+	<field name="practicante_lu_website" class="java.lang.String"/>
+	<field name="practicante_lu_responsable_area" class="java.lang.String"/>
+	<field name="practicante_lu_area_asignada" class="java.lang.String"/>
+	<field name="practicante_lu_email" class="java.lang.String"/>
+	<field name="practicante_lu_razon_social" class="java.lang.String"/>
+	<field name="practicante_lu_titular" class="java.lang.String"/>
+	<field name="practicante_lu_telefono" class="java.lang.String"/>
+	<field name="practicante_lu_cargo" class="java.lang.String"/>
+	<field name="practicante_codigo_proyecto" class="java.lang.String"/>
+	<field name="practicante_creditos_aprobados" class="java.lang.Integer"/>
+	<field name="estado_nombre" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="130" splitType="Stretch">
+			<staticText>
+				<reportElement x="232" y="78" width="100" height="16" uuid="812ffd13-31c9-4f4e-b7ba-acc2b011e165"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[FORMATO F1]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="113" y="94" width="334" height="16" uuid="ad319c6f-67cf-493a-b4a1-1e9363ba0899"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[INSCRIPCIÓN DE PRÁCTICAS PRE PROFESIONALES]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="57" y="13" width="287" height="42" forecolor="#232688" backcolor="#FFFFFF" uuid="9ae9340a-10c4-41d4-8122-06597df4b15c"/>
+				<textElement textAlignment="Justified">
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[UNIVERSIDAD NACIONAL AGRARIA DE LA SELVA
+Facultad de Ingeniería en Informática y Sistemas
+Comisión de Prácticas Pre Profesionales
+]]></text>
+			</staticText>
+			<line>
+				<reportElement x="63" y="57" width="237" height="1" uuid="db33f241-b21e-403f-85b8-aa94750af325"/>
+			</line>
+			<line>
+				<reportElement x="86" y="60" width="237" height="1" uuid="9884c417-3e4e-4f20-ab44-700a546fb8c8"/>
+			</line>
+			<image>
+				<reportElement x="-4" y="1" width="57" height="78" uuid="9e4c10ea-5a81-44fa-b20d-757bd6925812"/>
+				<imageExpression><![CDATA["C:\\Users\\Danny\\Desktop\\SPPP\\sppp\\src\\main\\webapp\\resources\\images\\Logos\\unas.png"]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<columnHeader>
+		<band height="672" splitType="Stretch">
+			<staticText>
+				<reportElement x="273" y="12" width="109" height="14" uuid="fc46bc80-1a48-49b5-8185-846e12db1fcf"/>
+				<text><![CDATA[Código del proyecto:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="342" y="28" width="167" height="14" uuid="e1fb395a-ccd7-4448-952b-250f45ee4489"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Para ser llenado por la comisión]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="0" y="62" width="515" height="74" uuid="dd9bf815-fd98-4c49-b669-299b9d1c178d"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="0" y="62" width="515" height="14" backcolor="#CADDF8" uuid="13b6dc6d-b22f-46b0-8647-d18acd11df23"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="0" y="99" width="515" height="14" backcolor="#CADDF8" uuid="369ba609-fd61-43f6-8c61-17c2abb54fc8"/>
+			</rectangle>
+			<line>
+				<reportElement x="384" y="62" width="1" height="74" uuid="03d6b34d-8434-4d81-b932-bb60bc279520"/>
+			</line>
+			<staticText>
+				<reportElement x="8" y="62" width="131" height="14" uuid="aba4ceb6-96f7-4187-8243-e7e0ef3eaee9"/>
+				<textElement textAlignment="Justified" verticalAlignment="Middle">
+					<font size="10"/>
+				</textElement>
+				<text><![CDATA[Nombres y Apellidos:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="391" y="62" width="124" height="14" uuid="5e883934-2bf6-4218-a0e9-13d8c910cd17"/>
+				<textElement textAlignment="Justified" verticalAlignment="Middle">
+					<font size="10"/>
+				</textElement>
+				<text><![CDATA[Código de Alumno:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="8" y="100" width="131" height="13" uuid="c74568a8-b65d-4f03-8698-9595359319b0"/>
+				<textElement textAlignment="Justified" verticalAlignment="Middle">
+					<font size="10"/>
+				</textElement>
+				<text><![CDATA[Correo Electrónico:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="391" y="100" width="124" height="13" uuid="4a271078-8442-41c2-9a6a-821d6fc1a042"/>
+				<textElement textAlignment="Justified" verticalAlignment="Middle">
+					<font size="10"/>
+				</textElement>
+				<text><![CDATA[Teléfono:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement isPrintRepeatedValues="false" x="9" y="80" width="358" height="16" uuid="14d325a4-91f3-4eee-9f95-02af53a6864a"/>
+				<textElement>
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{practicante_nombre_completo}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement isPrintRepeatedValues="false" x="392" y="80" width="123" height="16" uuid="16764ecf-5faa-4f0d-9526-490dd935f4b3"/>
+				<textElement>
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{practicante_codigo_alumno}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement isPrintRepeatedValues="false" x="9" y="117" width="358" height="17" uuid="4f44ea77-c137-47ac-89c1-9c9408f882ec"/>
+				<textElement>
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{practicante_correo_electronico}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement isPrintRepeatedValues="false" x="391" y="117" width="124" height="17" uuid="dfb1d98b-38fc-439f-be6d-158cca6de899"/>
+				<textElement>
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{practicante_telefono}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="1" y="46" width="178" height="13" uuid="6b7a8fee-015f-4010-b1c7-fb7fb9d2f829"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Datos Personales y Académicos:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="152" width="178" height="15" uuid="d27d1156-3c3a-4e6a-87b9-f4b14bdafc7f"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Información General de las PPP:]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="0" y="170" width="515" height="30" uuid="20f1c68e-459f-4bf4-8056-9b435479d4ce"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="10" y="169" width="100" height="14" uuid="6123cc84-8921-478a-ac5d-591106c8768b"/>
+				<textElement>
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Asesor: ]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="0" y="200" width="515" height="30" uuid="204df434-60f5-48f0-a067-f9432275d634"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="9" y="199" width="100" height="14" uuid="c55e4ee2-a95e-4612-9b89-8a76dc1e63a2"/>
+				<textElement>
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[N° Resolución: ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1" y="250" width="273" height="15" uuid="5790a141-f26a-4f78-a609-d3afbbb7dfb3"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Propuesta de proyecto de Prácticas Pre-Profesionales:]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="0" y="267" width="515" height="56" uuid="ca538f9d-9487-4018-ba55-b34ee42a4776"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="8" y="273" width="35" height="13" uuid="b6785d8e-df6e-4378-93dd-d46f2291df67"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[ Título:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement isPrintRepeatedValues="false" x="43" y="273" width="458" height="44" uuid="01582fbd-e10c-417b-ac6d-eb742d79cca3"/>
+				<textFieldExpression><![CDATA[$F{practicante_titulo_proyecto}]]></textFieldExpression>
+			</textField>
+			<rectangle>
+				<reportElement x="0" y="323" width="515" height="131" uuid="40fc5ebc-b078-456d-bada-7453e5c4e5d8"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="7" y="323" width="143" height="13" uuid="ba8df033-cf78-4fbc-a0a3-0b8deaba5c44"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[ Resumen de la propuesta:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement stretchType="RelativeToBandHeight" isPrintRepeatedValues="false" x="9" y="343" width="492" height="103" uuid="862973f1-bc86-46b0-812c-46cd46b14ab5"/>
+				<textElement textAlignment="Justified"/>
+				<textFieldExpression><![CDATA[$F{practicante_resumen_propuesta}]]></textFieldExpression>
+			</textField>
+			<rectangle>
+				<reportElement x="0" y="454" width="515" height="113" uuid="c802928d-5f82-47bc-b79a-6d483b8038ad"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="6" y="460" width="143" height="13" uuid="8ae471c2-e5fd-4aaa-a95e-7a283d5805d0"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[ Observación:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="9" y="183" width="500" height="14" uuid="daf1fb3c-7d62-466b-a71b-e62817bdfee6"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[(para ser llenado por la comisión)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="9" y="213" width="495" height="14" uuid="ee267c75-3ee2-43f6-84ab-651afd379f60"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[(para ser llenado por la comisión)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="9" y="473" width="495" height="14" uuid="8f42db00-e241-4718-9ef6-eb281c7bd83f"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[(para ser llenado por la comisión)]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="368" y="9" width="143" height="19" uuid="bf30d5eb-1b99-4688-8c94-614fdd3e1164"/>
+			</rectangle>
+			<textField isBlankWhenNull="true">
+				<reportElement isPrintRepeatedValues="false" x="376" y="12" width="127" height="14" uuid="e18a1762-4daa-48db-8986-2080491f8333"/>
+				<textFieldExpression><![CDATA[$F{practicante_codigo_proyecto}]]></textFieldExpression>
+			</textField>
+			<image>
+				<reportElement x="-24" y="582" width="88" height="66" uuid="6995dcad-648d-460a-9e0f-bf20970f1f0a"/>
+				<imageExpression><![CDATA["C:\\Users\\Danny\\Desktop\\SPPP\\sppp\\src\\main\\webapp\\resources\\images\\fiiis.jpg"]]></imageExpression>
+			</image>
+		</band>
+	</columnHeader>
+	<summary>
+		<band height="802" splitType="Stretch">
+			<rectangle>
+				<reportElement x="0" y="49" width="515" height="14" backcolor="#CADDF8" uuid="1eec27d3-27e9-462b-8203-1ee542e6cbe4"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="7" y="49" width="82" height="14" uuid="7458c6e8-4950-46a7-a703-56ee291c729d"/>
+				<textElement>
+					<font fontName="SansSerif" isBold="false"/>
+				</textElement>
+				<text><![CDATA[ Razón social:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement isPrintRepeatedValues="false" x="13" y="63" width="491" height="15" uuid="56647227-b273-42ee-bd5e-05818c4406a6"/>
+				<textFieldExpression><![CDATA[$F{practicante_lu_razon_social}]]></textFieldExpression>
+			</textField>
+			<rectangle>
+				<reportElement x="0" y="63" width="515" height="31" uuid="984c8834-b8e5-4cf2-bc01-d2c5526a139d"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="0" y="29" width="178" height="15" uuid="9bffcfea-f943-4da3-ad25-83ccfca9a1fe"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Lugar de ejecución de la PPP:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement isPrintRepeatedValues="false" x="11" y="71" width="499" height="16" uuid="56647227-b273-42ee-bd5e-05818c4406a6"/>
+				<textFieldExpression><![CDATA[$F{practicante_lu_razon_social}]]></textFieldExpression>
+			</textField>
+			<rectangle>
+				<reportElement x="0" y="94" width="515" height="26" uuid="d90c7df4-2f58-422e-a8b9-da8d8390ab86"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="9" y="100" width="48" height="14" uuid="7af521ad-6755-4b78-9f32-e386227e419e"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[ Titular:]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="0" y="120" width="236" height="30" uuid="04d05f37-bf19-418d-86e0-055db8548088"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="236" y="120" width="279" height="30" uuid="665f068d-5116-4067-a752-d855ad9b8899"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="9" y="127" width="56" height="14" uuid="081862f8-5a46-495c-a54f-60ba47ef3932"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[ Teléfono:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="242" y="127" width="58" height="14" uuid="5698f784-4af4-4c10-8727-96aac3371735"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[ Website:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement isPrintRepeatedValues="false" x="73" y="128" width="149" height="13" uuid="aeda6822-41f8-4ae0-88b4-2fca48d46c57"/>
+				<textFieldExpression><![CDATA[$F{practicante_lu_telefono}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement isPrintRepeatedValues="false" x="313" y="127" width="188" height="13" uuid="52206976-aafa-47aa-a9ee-59a87adf7a64"/>
+				<textFieldExpression><![CDATA[$F{practicante_lu_website}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement isPrintRepeatedValues="false" x="64" y="101" width="441" height="15" uuid="cfaf55d1-42a5-4d72-a5c1-eeb5c6582f42"/>
+				<textFieldExpression><![CDATA[$F{practicante_lu_titular}]]></textFieldExpression>
+			</textField>
+			<rectangle>
+				<reportElement x="0" y="150" width="515" height="35" uuid="4bbfaab7-9dfe-4d1e-b4ef-752b4df84454"/>
+			</rectangle>
+			<textField>
+				<reportElement isPrintRepeatedValues="false" x="29" y="168" width="476" height="14" uuid="0eda755e-3975-4fd1-9445-a70e6582198b"/>
+				<textFieldExpression><![CDATA[$F{practicante_lu_area_asignada}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="9" y="153" width="153" height="14" uuid="57d3a7dc-34bd-4418-a09e-5918944bec15"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Área asignada al practicante:]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="0" y="185" width="236" height="76" uuid="1c083ec7-161a-46f7-ab7d-c95ae7e11fe3"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="236" y="185" width="279" height="38" uuid="9cfefa7b-538b-407e-ab59-15b1b49f2481"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="236" y="223" width="279" height="38" uuid="cb0dbbfb-7704-42ed-bc3a-07f72ada3aa8"/>
+			</rectangle>
+			<textField isBlankWhenNull="true">
+				<reportElement isPrintRepeatedValues="false" x="260" y="242" width="248" height="14" uuid="3002d3c1-ec19-4541-8d37-10dec8972896"/>
+				<textFieldExpression><![CDATA[$F{practicante_lu_email}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement stretchType="RelativeToBandHeight" isPrintRepeatedValues="false" x="14" y="222" width="219" height="14" uuid="abfb1611-26ea-491a-8c8c-66dfd68742d9"/>
+				<textFieldExpression><![CDATA[$F{practicante_lu_responsable_area}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement isPrintRepeatedValues="false" x="260" y="205" width="249" height="14" uuid="846bf934-9a82-4bae-8e0c-075aa326fba1"/>
+				<textFieldExpression><![CDATA[$F{practicante_lu_cargo}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="244" y="226" width="56" height="14" uuid="88edbae7-b3e0-450d-ad09-abb0433648bd"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[E-Mail: ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="244" y="189" width="56" height="14" uuid="cc716b2c-db5c-4b52-88a6-6ade8e14017e"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Cargo:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="10" y="191" width="128" height="14" uuid="40b6d328-eee2-4092-8fea-d62ed9574005"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[ Responsable del Área:]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="0" y="261" width="515" height="72" uuid="b1771caa-5978-4fe4-8389-433832a714c1"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="8" y="266" width="212" height="13" uuid="1f28fd56-c11e-4d36-8339-eafa44088510"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[ Funciones propuestas para el practicante:]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="0" y="333" width="273" height="20" uuid="e5a04fc4-089a-4d89-9b97-eb5f984026cf"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="273" y="333" width="242" height="20" uuid="1f48dbb2-d203-45ed-859e-db4043949942"/>
+			</rectangle>
+			<textField pattern="MMMMM dd, yyyy" isBlankWhenNull="true">
+				<reportElement isPrintRepeatedValues="false" x="369" y="336" width="125" height="13" uuid="97fd5dc7-eda2-4e0f-99b3-82125a8e4e2d"/>
+				<textFieldExpression><![CDATA[$F{practicante_fecha_fin}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="283" y="336" width="83" height="13" uuid="a690bbe5-26a8-4426-ac81-ec77b27ca744"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Fecha Fin PPP:]]></text>
+			</staticText>
+			<textField pattern="MMMMM dd, yyyy" isBlankWhenNull="true">
+				<reportElement isPrintRepeatedValues="false" x="110" y="336" width="131" height="13" uuid="b51b361b-0f65-4f44-a07d-5e92ecb0a05d"/>
+				<textFieldExpression><![CDATA[$F{practicante_fecha_inicio}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="11" y="336" width="98" height="13" uuid="b09157be-4105-4106-9b01-542b5764b00c"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Fecha Inicio PPP:]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="0" y="353" width="273" height="70" uuid="9df72f4d-5109-4191-be73-6999cd0f95dc"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="273" y="353" width="242" height="70" uuid="f98c6f53-4eb1-46e5-ae7d-2c8f0e573673"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="338" y="409" width="111" height="13" uuid="f9063870-a479-4c5c-bafb-fe79dd2ff723"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Firma Practicante]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="59" y="409" width="149" height="13" uuid="b21fde04-a0dd-492c-9985-608198d4d628"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Firma y sello de Responsable]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1" y="438" width="72" height="20" uuid="4583abf6-f70f-4da6-a98b-0bb9000be20d"/>
+				<textElement>
+					<font isBold="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[IMPORTANTE:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="77" y="438" width="438" height="41" uuid="02cb6286-0852-484b-a004-43b0aa73a42c"/>
+				<textElement>
+					<font size="11" isBold="false" isStrikeThrough="false"/>
+				</textElement>
+				<text><![CDATA[Los datos consignados en el presente formato solo serán válidos y admitidos si presentan las firmas y sellos correspondientes.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="484" width="100" height="20" uuid="45080c30-5a58-44ae-b53b-b2456efc637a"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Lugar y Fecha:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="521" width="100" height="20" uuid="eac92f82-42f2-4779-a24f-233de1048a38"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Estado:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="2" y="541" width="495" height="14" uuid="e5ee580d-6e94-4664-b2c9-4dd05d41bf10"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[(para ser llenado por la comisión)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1" y="569" width="57" height="16" uuid="0c6421d6-2998-42e4-857b-d956abf16f78"/>
+				<textElement>
+					<font size="11"/>
+				</textElement>
+				<text><![CDATA[Aprobado]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="65" y="567" width="27" height="20" uuid="64ce4fe8-3d0a-43b7-8e7e-bb25b424864b"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="164" y="569" width="57" height="16" uuid="4578e667-405c-4fb4-b127-edecc48737fe"/>
+				<textElement>
+					<font size="11"/>
+				</textElement>
+				<text><![CDATA[Observado]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="234" y="567" width="27" height="20" uuid="e1f7aed3-50ea-49ba-9e57-538aa8a30432"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="332" y="570" width="57" height="16" uuid="ea947628-a2dc-49c0-9146-474884a5f08f"/>
+				<textElement>
+					<font size="11"/>
+				</textElement>
+				<text><![CDATA[Rechazado]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="401" y="568" width="27" height="20" uuid="e26cb87f-1bde-4120-a85b-475d930f84d2"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="34" y="620" width="462" height="37" uuid="efabb18c-ca63-43a7-977c-dc42fd86c803"/>
+				<textElement>
+					<font isBold="false"/>
+				</textElement>
+				<text><![CDATA[Presentar este formato debidamente llenado, adjuntando una solicitud dirigida al Decano FIIS.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="2" y="620" width="37" height="20" uuid="3cb4d003-7104-4540-b285-3a8eeed65a23"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[NOTA:]]></text>
+			</staticText>
+			<image>
+				<reportElement x="-16" y="714" width="63" height="88" uuid="6ce20b68-6c34-479f-b764-a9c64e1a5341"/>
+				<imageExpression><![CDATA["C:\\Users\\Danny\\Desktop\\SPPP\\sppp\\src\\main\\webapp\\resources\\images\\Logos\\fiiis.jpg"]]></imageExpression>
+			</image>
+			<image>
+				<reportElement x="7" y="286" width="306" height="37" uuid="1eb37bc3-076f-4e5e-8d84-bd456fcfd09e"/>
+				<imageExpression><![CDATA["C:\\Users\\Danny\\Documents\\func.jpg"]]></imageExpression>
+			</image>
+		</band>
+	</summary>
+</jasperReport>

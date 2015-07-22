@@ -1,0 +1,295 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:jsf="http://xmlns.jcp.org/jsf"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:pa="http://xmlns.jcp.org/jsf/passthrough"
+                xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+
+
+    <div align="center"><h3><strong>FORMATO F1</strong></h3></div>
+    <div align="center"><h3><strong>INSCRIPCIÓN DE PRACTICAS PRE PROFESIONALES</strong></h3></div>
+    <div align="right">
+        <div class="smart-form" style="width: 30%;">
+            <label class="label">Código del Proyecto: </label>
+            <label class="input">
+                <input type="text" disabled="disabled" value="#{practicanteController.asesor.numeroAcuerdo}" class="input input-xs" placeholder=""></input>
+            </label>
+        </div>
+    </div>
+    <br/>
+    <div class="">
+        <h:form id="newPracId" class="smart-form">
+            <strong>Datos Personales y Académicos</strong><br/>
+            <table class="table table-bordered table-striped table-condensed has-tickbox">
+                <tr style="background: #30E6FD;">
+                    <td width="70%;"><strong>Nombre y Apellidos:</strong></td>
+                    <td width="30%;"><strong>Código de alumno:</strong></td>
+                </tr>
+                <tr>
+                    <td>
+                        #{practicanteController.practicante.nombreCompleto}
+                    </td>
+                    <td>
+                        #{practicanteController.practicante.codigoAlumno}
+                    </td>
+                </tr>
+                <tr style="background: #30E6FD;">
+                    <td width="70%;"><strong>Correo electrónico: </strong></td>
+                    <td width="30%;"><strong>Teléfono: </strong></td>
+                </tr>
+                <tr>
+                    <td>
+                        #{practicanteController.practicante.correoElectronico}
+                    </td>
+                    <td>
+                        #{practicanteController.practicante.telefono}
+                    </td>
+                </tr>
+            </table>
+            <br/>
+            <strong>Información General de las PPP: </strong><br/>
+                <table class="table table-bordered table-striped table-condensed has-tickbox">
+                    <tr >
+                        <td style="background: #30E6FD;" width="30%;"><strong>Asesor:</strong></td>
+                        <td width="70%;">#{practicanteController.asesor.idDocente.nombreCompleto}</td>
+                    </tr>
+                    <tr>
+                        <td style="background: #30E6FD;" ><strong>N° de Resolución:</strong></td>
+                        <td><input type="text" style="width: 100%;" jsf:id="numResolucion"
+                                   jsf:value="#{practicanteController.asesor.numeroResolucion}"/></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" align="center">
+                            <p:commandLink class="btn btn-success" process="@this,numResolucion" action="#{practicanteController.guardarNumeroResolucion()}">
+                                <i class="fa fa-save" /> Guardar
+                            </p:commandLink>
+                        </td>
+                    </tr>
+                </table>
+            <br/>
+            <strong>Propuesta de proyecto de Prácticas Pre-Profesionales: </strong><br/>
+            <table class="table table-bordered table-striped table-condensed has-tickbox">
+                <tr >
+                    <td  ><strong>Título: </strong></td>
+                </tr>
+                <tr>
+                    <td>
+                        #{practicanteController.practicante.tituloProyecto}
+                    </td>
+                </tr>
+                <tr>
+                    <td ><strong>Resumen de la propuesta: </strong></td>
+                </tr>
+                <tr>
+                    <td>
+                        #{practicanteController.practicante.resumenPropuesta}
+                    </td>
+                </tr>
+                <tr>
+                    <td ><strong>Observaciones: </strong></td>
+                </tr>
+                <tr>
+                    <td>
+                        <div >
+                            <div style="margin-left: 25px;" jsf:id="obserId">
+                                <ul>
+                                    <ui:repeat value="#{practicanteController.practicante.observacionPracticanteList}" var="obs">
+                                        <li>#{obs.descripcion}</li>
+                                    </ui:repeat>
+                                    <li>
+                                        <p:commandLink update=":obserId" process="@this" oncomplete="show('#observaModal');"
+                                                       action="#{practicanteController.instanciarNuevaObservacion()}">
+                                            Añadir una observación
+                                        </p:commandLink>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+            <br/>
+            <strong>Lugar de ejecución de la PPP: </strong><br/>
+            <table class="table table-bordered table-striped table-condensed has-tickbox">
+                <tr >
+                    <td colspan="2" ><strong>Razón Social: </strong></td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        #{practicanteController.practicante.luRazonSocial}
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2" ><strong>Titular: </strong></td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        #{practicanteController.practicante.luTitular}
+                    </td>
+                </tr>
+                <tr>
+                    <td><strong>Teléfono: </strong></td>
+                    <td><strong>Website: </strong></td>
+                </tr>
+                <tr>
+                    <td width="50%;">
+                        #{practicanteController.practicante.luTelefono}
+                    </td>
+                    <td width="50%;">
+                        #{practicanteController.practicante.luWebsite}
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2"><strong>Área asignada al Practicante: </strong></td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        #{practicanteController.practicante.luAreaAsignada}
+                    </td>
+                </tr>
+                <tr>
+                    <td ><strong>Responsable del Área: </strong></td>
+                    <td ><strong>Cargo: </strong></td>
+                </tr>
+                <tr>
+                    <td rowspan="3">
+                        #{practicanteController.practicante.luResponsableArea}
+                    </td>
+                    <td>
+                        #{practicanteController.practicante.luCargo}
+                    </td>
+                </tr>
+                <tr>
+                    <td ><strong>E-mail: </strong></td>
+                </tr>
+                <tr>
+                    <td>
+                        #{practicanteController.practicante.luEmail}
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2"><strong>Funciones Propuestas para el Practicante: </strong></td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <div style="margin-left: 25px;" jsf:id="divFunc">
+                            <ul>
+                                <ui:repeat value="#{practicanteController.practicante.practicanteFuncionList}" var="func" varStatus="status">
+                                    <li>
+                                        #{func.nombre}
+                                    </li>
+                                </ui:repeat>
+                            </ul>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td ><strong>Fecha Inicio PPP: </strong></td>
+                    <td ><strong>Fecha Fin PPP: </strong></td>
+                </tr>
+                <tr>
+                    <td>
+                        <p:calendar value="#{practicanteController.practicante.fechaInicio}" navigator="true" pattern="dd, MMMM yyyy" >
+                            <p:ajax event="dateSelect" process="@this" 
+                                    update="finIdA" listener="#{practicanteController.calcularFinPracticas()}" />
+                        </p:calendar>
+                    </td>
+                    <td>
+                        <h:outputText id="finIdA" value="#{practicanteController.practicante.fechaFin}">
+                            <f:convertDateTime pattern="dd, MMMM yyyy" />
+                        </h:outputText>
+                    </td>
+                </tr>
+            </table>
+            <!--            <div class="">
+                            <strong><u>IMPORTANTE: </u></strong> los datos consignados en el presente formato solo serán válidos y admitidos si la comisión las valida.
+                        </div>
+                        <br/>
+                        <strong><u>Lugar y Fecha: </u></strong>
+                        <br/><br/>-->
+            <br/>
+            <hr/>
+            <br/>
+            <!--            <div align="center">
+                            <strong>ESTADO</strong>
+                            <br/>
+            -->                <div align="center">
+                <p:selectOneRadio id="city"   layout="grid" columns="3" value="#{practicanteController.practicante.idEstado.id}" >
+                    <f:selectItem itemValue="2" itemLabel="Aprobado" />
+                    <f:selectItem itemValue="4" itemLabel="Observación" />
+                    <f:selectItem itemValue="3" itemLabel="Rechazado" />
+                </p:selectOneRadio>
+
+            </div><!--
+        </div>-->
+            <br/>
+            <footer>
+                <p:commandLink class="btn btn-danger" update=":content" process="@this" action="#{practicanteController.iniciarValoresLista()}">
+                    <f:setPropertyActionListener
+                        target="#{navigatorController.content}"
+                        value="./view/pages/practica/practica_lista.xhtml" />
+                    - - CANCELAR - - 
+                </p:commandLink>
+                <p:commandLink class="btn btn-success btn-xs" 
+                               oncomplete="if(args.validationFailed){alert('Faltan llenar Campos');}else {if(confirm('DESPUÉS DE GUARDAR ESTOS DATOS, NO SE PODRÁ EDITAR HASTA QUE LA COMISIÓN DE SUS OBSERVACIONES, DESEA CONTINUAR?')){GuardarPracticas();}}">
+                    - - GUARDAR - -
+                </p:commandLink>
+                <p:remoteCommand name="GuardarPracticas" update=":content" 
+                                 action="#{practicanteController.guardarPracticaAlumno()}">
+                    <f:setPropertyActionListener
+                        target="#{navigatorController.content}"
+                        value="./view/pages/practica/practica_lista.xhtml" />
+                </p:remoteCommand>
+            </footer>
+        </h:form>
+    </div>
+
+
+    <div aria-hidden="true" role="dialog" tabindex="-1" id="observaModal" class="modal fade">  
+        <div class="modal-dialog">  
+            <div class="modal-content">
+                <div class="modal-header">
+                    Nueva Observación
+                </div>
+                <div class="modal-body">
+                    <form class="form-horizontal" jsf:id="obserId">
+                        <fieldset>
+                            <div >
+                                <p:messages closable="true" />
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-2 control-label">Detalle la Observación</label>
+                                <div class="col-md-10">
+                                    <h:inputTextarea class="form-control"  required="true" label="Detalle de Observación"
+                                                     value="#{practicanteController.observacionPracticante.descripcion}"/>
+                                </div>
+                            </div>
+                        </fieldset>
+                        <div class="form-actions">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <p:commandLink class="btn btn-success" action="#{practicanteController.guardarObservacionPracticante()}"
+                                                   update=":newPracId:obserId" oncomplete="hide('#observaModal');" >
+                                        GUARDAR
+                                    </p:commandLink>
+                                    <p:commandLink class="btn btn-danger" process="@this" 
+                                                   style="margin-left: 10px;" oncomplete="hide('#observaModal');">
+                                        SALIR
+                                    </p:commandLink>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>  
+        </div>  
+    </div>
+
+    <script>
+        limpiarCSSTablaPrimeFaces();
+    </script>
+</ui:composition>

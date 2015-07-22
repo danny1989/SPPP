@@ -1,0 +1,18 @@
+agregar nuevo para q registre una practica la comision
+reporte de asesores maximo 2. y restringir.   termina su practica lo dejo libre
+los alumnos deben de registrar su ampliacion, cambio de tema,anulacion.
+enviar correo de registro de f1 a la comision. y solicitudes ampliacion, cambio de tema,anulacion.
+subir acta escaneado
+el combo del docente no debe repetirse si ya se selecciono a uno de ellos en el combo anterior
+pacticante debe tener mas de dos temas
+agregar nota y estado si apro y no. en evalucaicon
+al salir el alumno estado = desaprobado y anulado.  debe de volver de registrar su f1
+el asesor debe de tener un cuenta con los practicantes asignados, y su dictamen en el estado informe.
+controlar el credito >=160
+hacer el detalle del alumno.
+agregar fecha inicio y final de practica en cada proceso de detalle
+
+REPORTES.
+IMPRIMIR ACTA,ACUERDO,F1.
+PRACTICANTES X AÑO, APROBADOS, DESAPROBADOS
+

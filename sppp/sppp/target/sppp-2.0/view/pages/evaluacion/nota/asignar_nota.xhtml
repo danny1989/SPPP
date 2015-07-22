@@ -1,0 +1,193 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:jsf="http://xmlns.jcp.org/jsf"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui">
+
+    <div class="row">
+        <div class="col-xs-12 col-sm-7 col-md-7 col-lg-4">
+            <h1 class="page-title txt-color-blueDark">
+                <i class="fa fa-pencil-square-o fa-fw "></i> 
+                Asignación 
+                <span>> 
+                    de NOTA
+                </span>
+            </h1>
+        </div>
+    </div>
+
+    <!-- widget grid -->
+    <section id="widget-grid" class="">
+        <!-- row -->
+        <div class="row">
+
+            <!-- NEW WIDGET START -->
+            <article class="col-sm-12 col-md-12 col-lg-12">
+
+                <!-- Widget ID (each widget will need unique ID)-->
+                <div class="jarviswidget" id="wid-id-0" data-widget-colorbutton="false" data-widget-editbutton="false">
+                    <header>
+                        <span class="widget-icon"> <i class="fa fa-eye"></i> </span>
+                        <h2>Asignación de NOTA</h2>
+
+                    </header>
+
+
+                    <div>
+                        <div class="jarviswidget-editbox">
+                        </div>
+                        <div class="widget-body">
+
+                            <div class="table-responsive">
+                                <table class="table table-hover table-bordered" >
+                                    <tbody>
+                                        <tr>
+                                            <td rowspan="5" width="25%">
+                                                <p:graphicImage value="resources/foto/none_person.jpg" width="150" height="155" />
+                                            </td>
+                                            <td><strong>Nombre</strong></td>
+                                            <td width="50%">#{asignarNotaController.practicante.nombreCompleto}</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>Creditos Aprobados</strong></td>
+                                            <td>#{asignarNotaController.practicante.creditosAprobados}</td>
+
+                                        </tr>
+                                        <tr>
+                                            <td><strong>Teléfono</strong></td>
+                                            <td>#{asignarNotaController.practicante.telefono}</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>Correo</strong></td>
+                                            <td>#{asignarNotaController.practicante.correoElectronico}</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>Estado Práticas</strong></td>
+                                            <td>#{asignarNotaController.practicante.idEstado.nombre}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <hr/>
+                            <div align="center">
+                                <h3><strong><u>ASIGNACIÓN DE NOTA</u></strong></h3>
+                            </div>
+                            <h:form class="form-horizontal" enctype="multipart/form-data"> 
+                                <fieldset>
+                                    <div class="form-group">
+                                        <label class="col-md-4 control-label">Nota *</label>
+                                        <div class="col-md-3">
+                                            <p:spinner class="form-control" required="Nota" label="Nota" maxlength="2" max="20" min="0" value="#{asignarNotaController.sustentacionNota.nota}" />
+                                            <!--                                            <input class="form-control" type="text" jsf:required="true" />-->
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-4 control-label">Fecha de Asignación * </label>
+                                        <div class="col-md-8">
+                                            <p:calendar required="true" label="Fecha" value="#{asignarNotaController.sustentacionNota.fecha}" locale="es" pattern="dd/MM/yyyy" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-4 control-label">N° Acta * </label>
+                                        <div class="col-md-8">
+                                            <input class="form-control" placeholder="SE GENERARÁ AL MOMENTO DE GUARDAR" type="text" disabled="disabled" jsf:value="#{asignarNotaController.sustentacionNota.numeroActa}"/>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-4 control-label">Archivo * </label>
+                                        <div class="col-md-8">
+                                            <p:fileUpload value="#{asignarNotaController.file}" mode="simple" skinSimple="true"/>
+                                            <!--<input class="form-control" type="text" jsf:required="true" jsf:value="#{evaluacionController.sustentacion.numeroAcuerdo}"/>-->
+                                        </div>
+                                    </div><!--
+                                    <div class="form-group">
+                                        <label class="col-md-4 control-label">Nombre Del Decano *</label>
+                                        <div class="col-md-8">
+                                            <input class="form-control"  type="text" jsf:required="true" jsf:value="#{evaluacionController.sustentacion.nombreDecano}"/>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-4 control-label">Nombre Del Año *</label>
+                                        <div class="col-md-8">
+                                            <input class="form-control"  type="text" jsf:required="true" jsf:value="#{evaluacionController.sustentacion.nombreAnio}"/>
+                                        </div>
+                                    </div>
+                                    <hr/>-->
+
+                                </fieldset>
+                                <div class="form-actions">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <p:commandLink class="btn btn-danger" update=":content" process="@this" 
+                                                           action="#{evaluacionController.inicializarLista()}">
+                                                <f:setPropertyActionListener
+                                                    target="#{navigatorController.content}"
+                                                    value="./view/pages/evaluacion/practicantes_lista.xhtml" />
+                                                Cancelar
+                                            </p:commandLink>
+                                            <p:commandLink class="btn btn-success" style="margin-left: 10px;" ajax="false"
+                                                           disabled="#{!asignarNotaController.guardar}"
+                                                           action="#{asignarNotaController.guardarSustentacionNota()}">
+                                                Guardar
+                                            </p:commandLink>
+                                        </div>
+                                    </div>
+                                </div>
+                            </h:form>
+
+                            <div align="center">
+                                <h3><strong><u>DETALLE DE SUSTENTACIÓN</u></strong></h3>
+                            </div>
+                            <h:form class="form-horizontal"> 
+                                <p:dataTable value="#{asignarNotaController.sustentacion.sustentacionNotaList}" var="nota"
+                                             emptyMessage="NO SE HAN REGISTRADO SUSTENTACIÓN..."
+                                             rowStyleClass="#{nota.estado eq 'APROBADO'?'success':'danger'}">
+                                    <p:column headerText="NOTA">
+                                        #{nota.nota}
+                                    </p:column>
+                                    <p:column headerText="ESTADO">
+                                        #{nota.estado}
+                                    </p:column>
+                                    <p:column headerText="FECHA">
+                                        <h:outputText value="#{nota.fecha}">
+                                            <f:convertDateTime pattern="dd MMMM yyyy" />
+                                        </h:outputText>                                        
+                                    </p:column>
+                                    <p:column headerText="ARCHIVO" >
+                                        <p:commandLink class="btn btn-success"
+                                                       action="#{asignarNotaController.prepararArchivoParaDescarga(nota.urlArchivo)}"
+                                                       oncomplete="PF('dial').show();" >
+                                            <i class="fa fa-download" />
+                                        </p:commandLink>
+
+                                    </p:column>
+                                </p:dataTable>
+                            </h:form>
+                        </div>
+                    </div>
+                </div>
+            </article>
+        </div>
+    </section>
+
+
+    <p:dialog header="DESCARGA DE ARCHIVO" widgetVar="dial" appendTo="@(body)" modal="true">
+        <h:form>
+            <div align="center">
+                <p:commandButton value="Descargar Archivo" ajax="false" 
+                                 onclick="PF('dial').hide();" 
+                                 icon="ui-icon-arrowthick-1-s">
+                    <p:fileDownload value="#{asignarNotaController.fileDownload}" />
+                </p:commandButton>
+            </div>
+        </h:form>
+    </p:dialog>
+
+    <script>
+        limpiarCSSTablaPrimeFaces();
+    </script>
+
+</ui:composition>

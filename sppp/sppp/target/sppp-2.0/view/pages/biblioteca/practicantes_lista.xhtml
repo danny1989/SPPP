@@ -1,0 +1,91 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:jsf="http://xmlns.jcp.org/jsf"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui">
+
+
+    <section id="widget-grid" class="">
+        <div class="row">
+            <!-- NEW COL START -->
+            <article class="col-sm-12">
+                <div class="jarviswidget jarviswidget-color-blueDark" id="wid-id-0" data-widget-colorbutton="false" data-widget-editbutton="false" data-widget-custombutton="false">
+
+                    <header>
+                        <span class="widget-icon"> <i class="fa fa-edit"></i> </span>
+                        <h2>Lista de practicantes...</h2>
+
+                    </header>
+
+                    <div>
+                        <div class="jarviswidget-editbox">
+                        </div>
+
+                        <div class="widget-body">
+                            <div class="widget-body-toolbar">
+
+                                <div class="row">
+
+                                    <div class="col-sm-6">
+
+                                    </div>
+
+                                    <div class="col-sm-6 text-right">
+
+                                    </div>
+
+                                </div>
+                            </div>
+                            <h:form>
+                                <div class="table-responsive">
+
+                                    <p:dataTable value="#{bibliotecaController.listaInformes}" var="inf"
+                                                 paginator="true" rows="10" >
+                                        <p:column headerText="Nombre Practicante" width="20%">
+                                            #{inf.idPracticante.nombreCompleto}
+                                        </p:column>
+                                        <p:column headerText="Titulo de Proyecto">
+                                            #{inf.idPracticante.tituloProyecto}
+                                        </p:column>
+                                        <p:column headerText="Descarga">
+                                            <p:commandLink class="btn btn-success"
+                                                           action="#{bibliotecaController.prepararArchivoParaDescarga(inf.urlArchivo)}"
+                                                           oncomplete="PF('dial').show();" >
+                                                <i class="fa fa-download" />
+                                            </p:commandLink>
+                                            
+                                        </p:column>
+                                    </p:dataTable>
+                                </div>
+
+                            </h:form>
+                        </div>
+                    </div>
+
+                </div>
+            </article>
+        </div>
+    </section>
+
+    <p:dialog header="DESCARGA DE ARCHIVO" widgetVar="dial" appendTo="@(body)" modal="true">
+        <h:form>
+            <div align="center">
+                <p:commandButton value="Descargar Archivo" ajax="false" 
+                                 onclick="PF('dial').hide();" 
+                                 icon="ui-icon-arrowthick-1-s">
+                    <p:fileDownload value="#{bibliotecaController.fileDownload}" />
+                </p:commandButton>
+            </div>
+        </h:form>
+    </p:dialog>
+
+    <script>
+        $('table').addClass('table table-bordered table-striped table-condensed table-hover has-tickbox');
+
+        $('table').closest('div.ui-datatable').removeClass();
+        $('table thead th').removeClass('ui-state-default');
+    </script>
+</ui:composition>

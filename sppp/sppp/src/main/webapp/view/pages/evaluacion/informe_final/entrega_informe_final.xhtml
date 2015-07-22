@@ -1,0 +1,140 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:jsf="http://xmlns.jcp.org/jsf"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui">
+
+    <div class="row">
+        <div class="col-xs-12 col-sm-7 col-md-7 col-lg-7">
+            <h1 class="page-title txt-color-blueDark">
+                <i class="fa fa-pencil-square-o fa-fw "></i> 
+                ENTREGA DE INFORME FINAL 
+            </h1>
+        </div>
+    </div>
+
+    <!-- widget grid -->
+    <section id="widget-grid" class="">
+        <!-- row -->
+        <div class="row">
+
+            <!-- NEW WIDGET START -->
+            <article class="col-sm-12 col-md-12 col-lg-12">
+
+                <!-- Widget ID (each widget will need unique ID)-->
+                <div class="jarviswidget" id="wid-id-0" data-widget-colorbutton="false" data-widget-editbutton="false">
+                    <header>
+                        <span class="widget-icon"> <i class="fa fa-eye"></i> </span>
+                        <h2>Entrega de Informe</h2>
+
+                    </header>
+
+
+                    <div>
+                        <div class="jarviswidget-editbox">
+                        </div>
+                        <div class="widget-body">
+
+                            <div class="table-responsive">
+                                <table class="table table-hover table-bordered" >
+                                    <tbody>
+                                        <tr>
+                                            <td rowspan="5" width="25%">
+                                                <p:graphicImage value="resources/foto/none_person.jpg" width="150" height="155" />
+                                            </td>
+                                            <td><strong>Nombre</strong></td>
+                                            <td width="50%">#{entregaInformeFinalController.practicante.nombreCompleto}</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>Creditos Aprobados</strong></td>
+                                            <td>#{entregaInformeFinalController.practicante.creditosAprobados}</td>
+
+                                        </tr>
+                                        <tr>
+                                            <td><strong>Teléfono</strong></td>
+                                            <td>#{entregaInformeFinalController.practicante.telefono}</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>Correo</strong></td>
+                                            <td>#{entregaInformeFinalController.practicante.correoElectronico}</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>Estado Práticas</strong></td>
+                                            <td>#{entregaInformeFinalController.practicante.idEstado.nombre}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <hr/>
+                            <div align="center">
+                                <h3><strong><u>Entrega de Informe Final</u></strong></h3>
+                            </div>
+                            <h:form class="form-horizontal" enctype="multipart/form-data"> 
+                                <fieldset>
+                                    <div class="form-group">
+                                        <label class="col-md-3 control-label">N° Oficio * </label>
+                                        <div class="col-md-8">
+                                            <input class="form-control" placeholder="SE GENERARÁ AL MOMENTO DE GUARDAR" 
+                                                   type="text" disabled="disabled" value="#{entregaInformeFinalController.informeFinal.idOficio.nombreOficio}"/>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-3 control-label">Nombre Año *</label>
+                                        <div class="col-md-8">
+                                            <input class="form-control" type="text" jsf:value="#{entregaInformeFinalController.informeFinal.nombreAnio}"/>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-3 control-label">Nombre Decano * </label>
+                                        <div class="col-md-8">
+                                            <input class="form-control" type="text" jsf:value="#{entregaInformeFinalController.informeFinal.nombreDecano}"/>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group"> 
+                                        <label class="col-md-3 control-label">Archivo * </label>
+                                        <div class="col-md-8">
+                                            <p:fileUpload value="#{entregaInformeFinalController.file}" mode="simple" skinSimple="true"/>
+
+                                        </div>
+                                    </div>
+
+                                </fieldset>
+                                <div class="form-actions">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <p:commandLink class="btn btn-danger" update=":content" process="@this" 
+                                                           action="#{evaluacionController.inicializarLista()}">
+                                                <f:setPropertyActionListener
+                                                    target="#{navigatorController.content}"
+                                                    value="./view/pages/evaluacion/practicantes_lista.xhtml" />
+                                                Cancelar
+                                            </p:commandLink>
+                                            <p:commandLink class="btn btn-info" process="@this" ajax="false" style="margin-left: 10px;"
+                                                           action="#{entregaInformeFinalController.imprimirInforme()}">
+                                                Inprimir
+                                            </p:commandLink>
+                                            <p:commandLink class="btn btn-success" style="margin-left: 10px;" ajax="false"
+                                                           action="#{entregaInformeFinalController.guardarInformeFinal()}">
+                                                Guardar
+                                            </p:commandLink>
+                                        </div>
+                                    </div>
+                                </div>
+                            </h:form>
+
+
+                        </div>
+                    </div>
+                </div>
+            </article>
+        </div>
+    </section>
+
+    
+    
+
+</ui:composition>

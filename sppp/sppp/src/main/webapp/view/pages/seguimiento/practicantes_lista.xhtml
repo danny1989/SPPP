@@ -1,0 +1,119 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:jsf="http://xmlns.jcp.org/jsf"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui">
+
+
+    <section id="widget-grid" class="">
+        <div class="row">
+            <!-- NEW COL START -->
+            <article class="col-sm-12">
+                <div class="jarviswidget jarviswidget-color-blueDark" id="wid-id-0" data-widget-colorbutton="false" data-widget-editbutton="false" data-widget-custombutton="false">
+
+                    <header>
+                        <span class="widget-icon"> <i class="fa fa-edit"></i> </span>
+                        <h2>Lista de practicantes...</h2>
+
+                    </header>
+
+                    <div>
+                        <div class="jarviswidget-editbox">
+                        </div>
+
+                        <div class="widget-body">
+                            <div class="widget-body-toolbar">
+
+                                <div class="row">
+
+                                    <div class="col-sm-6">
+
+                                    </div>
+
+                                    <div class="col-sm-6 text-right">
+
+                                    </div>
+
+                                </div>
+                            </div>
+                            <h:form>
+                                <div class="table-responsive">
+
+                                    <p:dataTable value="#{seguimientoController.listaPracticantes}" var="pract"
+                                                 paginator="true" rows="10" rowStyleClass="#{pract.nombreEstadoGeneral eq 'EJECUCIÓN'?'success':pract.nombreEstadoGeneral eq 'INFORME'?'warning':'danger'}">
+                                        <p:column width="5%">
+                                            <p:menuButton value="#{pract.codigoEstudiante}" >
+                                                <p:menuitem value=" Realizar Ampliación" update=":content" disabled="!#{pract.nombreEstadoGeneral eq 'EJECUCIÓN'}"
+                                                            action="#{seguimientoController.getPracticanteById(pract.idPracticante)}" >
+                                                    <f:setPropertyActionListener
+                                                        target="#{navigatorController.content}"
+                                                        value="./view/pages/seguimiento/ampliacion/formulario_ampliacion.xhtml" />
+                                                </p:menuitem>
+                                                <p:separator />
+                                                <p:menuitem value=" Entrega de Informe" update=":content"
+                                                            disabled="!#{(pract.nombreEstadoGeneral eq 'INFORME') or (pract.nombreEstadoGeneral eq 'FIN DE PRÁCTICA')}"
+                                                            action="#{seguimientoController.cambiarInformeEntregado(pract.idPracticante)}">
+
+                                                </p:menuitem>
+                                                <p:separator rendered="#{(pract.nombreEstadoGeneral eq 'INFORME') or (pract.nombreEstadoGeneral eq 'FIN DE PRÁCTICA')}"/>
+                                                <p:menuitem value=" Anulación de Prácticas" update=":content" disabled="!#{(pract.nombreEstadoGeneral eq 'FIN DE PRÁCTICA')}"
+                                                            action="#{seguimientoController.anulacionDePractica(pract.idPracticante)}">
+
+                                                </p:menuitem>
+                                            </p:menuButton>
+
+                                        </p:column>
+                                        <p:column headerText="Nombre Practicante" >
+                                            #{pract.nombrePracticante}
+                                        </p:column>
+                                        <p:column headerText="Nombre Asesor">
+                                            #{pract.nombreDocente}
+                                        </p:column>
+                                        <p:column headerText="Título de Proyecto">
+                                            #{pract.tituloProyecto}
+                                        </p:column>
+                                        <p:column headerText="Cambio Tema">
+                                            #{pract.cambioTema}
+                                        </p:column>
+                                        <p:column headerText="Periodo Prácticas" style="text-align: center;">
+                                            <h:outputText value="#{pract.fechaInicio}">
+                                                <f:convertDateTime pattern="dd/MM/yyyy" />
+                                            </h:outputText> al
+                                            <h:outputText value="#{pract.fechaFin}">
+                                                <f:convertDateTime pattern="dd/MM/yyyy" />
+                                            </h:outputText>
+                                        </p:column>
+                                        <p:column headerText="Ampliación" style="text-align: center;">
+                                            #{pract.mesesAmpliacion eq null?'0':pract.mesesAmpliacion}
+                                        </p:column>
+                                        <p:column headerText="Total Meses" style="text-align: center;">
+                                            #{pract.mesesAmpliacion + 3}
+                                        </p:column>
+                                        <p:column headerText="Estado General">
+                                            #{pract.nombreEstadoGeneral}
+                                        </p:column>
+                                        <p:column headerText="Estado Específico">
+                                            #{pract.nombreEstado}
+                                        </p:column>
+                                    </p:dataTable>
+                                </div>
+
+                            </h:form>
+                        </div>
+                    </div>
+
+                </div>
+            </article>
+        </div>
+    </section>
+
+    <script>
+        $('table').addClass('table table-bordered table-striped table-condensed table-hover has-tickbox');
+
+        $('table').closest('div.ui-datatable').removeClass();
+        $('table thead th').removeClass('ui-state-default');
+    </script>
+</ui:composition>
